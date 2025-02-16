@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkinChase</title>
+    <link rel="stylesheet" href="style.css">
+   <!-- <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/products.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/footer.css">-->
+</head>
+<body>
+    <div class="header">
+        <div class="logo">SkinChase
+            <a href="#">Tools</a>
+            <a href="#">App</a>
+        </div>
+
+        
+
+
+        <div class="balance">
+            <span>n/a EUR</span>
+        </div>
+        <div class="currency">
+            <button class="dropbtn">Currency</button>
+            <div class="dropdown-content">
+                <a href="#">EUR</a>
+                <a href="#">USD</a>
+                <a href="#">CNY</a>
+            </div>
+        </div>
+        <div class="cart">
+
+        </div>
+        <div class="usericon">
+            <a class="usricon" href="https://steamcommunity.com/id/penisfight">
+            <img src="pics/userico.jpg" width="40px"></a>
+        </div>
+    </div>
+
+    <div class="category">
+        
+
+    </div>
+
+    <div class="itemtype">
+
+
+    </div>
+
+    <div class="orderby">
+
+    </div>
+
+    <div class="main">
+        
+    <!--formulario sidebar-->
+        <div class="sidebar">
+            <form action="search.php" method="post">
+                <h3>Search</h3>
+                <div class="filters">
+                    <input type="text" placeholder="Search..." id="name" name="name" required>
+                    <input type="number" placeholder="Float from" id="floatFrom" id="floatFrom" name="floatFrom">
+                    <input type="number" placeholder="Float to" id="">
+                    <input type="number" placeholder="Price from">
+                    <input type="number" placeholder="Price to">
+                </div>
+
+                <h3>Special</h3>
+                <div class="filters">
+                    
+                        <label><input type="checkbox" class="StatTrak"> StatTrak</label><br>
+                        <label><input type="checkbox" class="Souvenir"> Souvenir</label><br>
+                        <label><input type="checkbox" class="Normal"> Normal</label>
+                    
+                </div>
+
+                <div class="filters">
+                        <input type="text" placeholder="Sticker 1" id="sticker1" name="sticker1">
+                        <input type="text" placeholder="Sticker 2" id="sticker2" name="sticker2">
+                        <input type="text" placeholder="Sticker 3" id="sticker3" name="sticker3">
+                        <input type="text" placeholder="Sticker 4" id="sticker4" name="sticker4">
+                        <input type="text" placeholder="Sticker 5" id="sticker5" name="sticker5"> 
+                </div>
+
+                <h3>Listing Type</h3>
+                <div class="filters"> 
+                    <input type="checkbox" id="all" name="all">All</input>
+                    <input type="checkbox" id="Auction" name="Auction">Auction</input>
+                    <input type="checkbox" id="buynow" name="buynow">Buy Now</input>
+                </div>
+                
+                <input type="Submit" value="Submit">
+            </form>
+        </div>
+
+        
+        <div class="products">
+            <div class="product">
+                <img src="pics/360fx360f.png" width="100%"> 
+                <!--<div class="sketchfab-embed-wrapper"> <iframe title="CSGO WEAPON: AWP GUNGNIR" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/e1d6a40dc1f1499c8b960b05d13e7f6c/embed?camera=0&transparent=1"> </iframe> </div><div class="name">AWP | Gungnir</div>-->
+                <div class="name">AWP | Gugnir</div>
+                <div class="price">9,546.25€</div>
+                <div class="buttons">
+                    <button>Add to cart</button>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+            <div class="product">
+                <img src="pics/dlore steam.png" width="100%" >
+                <!--<div class="sketchfab-embed-wrapper"> <iframe title="CSGO AWP DRAGON LORE" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/013c3a1d945a4336a87f889c3d4c25b1/embed?camera=0&preload=1&transparent=1"> </iframe> </div><div class="name">AWP | Dragon Lore</div>-->
+                <div class="name">AWP | Dragon Lore</div>
+                <div class="price">10,598.43€</div>
+                <div class="buttons">
+                    <button>Add to cart</button>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+
+            <div class="product">
+                <img src="pics/m9 doppler steam.png" width="100%">
+                <div class="name">M9 Bayonet | Doppler</div>
+                <div class="price">10,598.37€</div>
+                <div class="buttons">
+                    <button>Add to cart</button>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+
+            <div class="product">
+                <img src="pics/deagle blaze steam.png" width="100%">
+                <div class="name">Desert Eagle | Blaze</div>
+                <div class="price">521,25€</div>
+                <div class="buttons">
+                    <button>Add to cart</button>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+
+            <div class="product">
+                <img src="pics/moto spear steam.png" width="100%">
+                <div class="name"> Gloves | Spearmint</div>
+                <div class="price">4,532.27€</div>
+                <div class="buttons">
+                    <button>Add to cart</button>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+
+            <div class="product">
+                <img src="pics/kara ch steam.png" width="100%">
+                <div class="name">Karambit | Case </div>
+                <div class="price">2.034.679,69€</div>
+                <div class="buttons">
+                    <button>Add to cart</button>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+
+            <div class="product">
+                <img src="pics/asiimov steam.png" width="100%">
+                <div class="name">AWP | Asiimov</div>
+                <div class="price">2.034.679,69€</div>
+                <div class="buttons">
+                    <button>Add to cart</button>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+            <div class="product">
+                <img src="pics/bfk lore steam.png" width="100%">
+                <div class="name">Butterfly Knife | Lore</div>
+                <div class="price">1.230,49€</div>
+                <div class="buttons">
+                    <button>Add to cart</button>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+            <div class="product">
+                <img src="pics/bfk lore steam.png" width="100%">
+                <div class="name">Butterfly Knife | Lore</div>
+                <div class="price">1.230,49€</div>
+                <div class="buttons">
+                    <button>Add to cart</button>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+            <div class="product">
+                <img src="pics/bfk lore steam.png" width="100%">
+                <div class="name">Butterfly Knife | Lore</div>
+                <div class="price">1.230,49€</div>
+                <div class="buttons">
+                    <button>Add to cart</button>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+            <div class="product">
+                <img src="pics/bfk lore steam.png" width="100%">
+                <div class="name">Butterfly Knife | Lore</div>
+                <div class="price">1.230,49€</div>
+                <div class="buttons">
+                    <button>Add to cart</button>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+            <div class="product">
+                <img src="pics/bfk lore steam.png" width="100%">
+                <div class="name">Butterfly Knife | Lore</div>
+                <div class="price">1.230,49€</div>
+                <div class="buttons">
+                    <button>Add to cart</button>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+            <div class="product">
+                <img src="pics/bfk lore steam.png" width="100%">
+                <div class="name">Butterfly Knife | Lore</div>
+                <div class="price">1.230,49€</div>
+                <div class="buttons">
+                    <button>Add to cart</button>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+            <div class="product">
+                <img src="pics/bfk lore steam.png" width="100%">
+                <div class="name">Butterfly Knife | Lore</div>
+                <div class="price">1.230,49€</div>
+                <div class="buttons">
+                    <button>Add to cart</button>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+            <div class="product">
+                <img src="pics/bfk lore steam.png" width="100%">
+                <div class="name">Butterfly Knife | Lore</div>
+                <div class="price">1.230,49€</div>
+                <div class="buttons">
+                    <button>Add to cart</button>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+            <div class="product">
+                <img src="pics/bfk lore steam.png" width="100%">
+                <div class="name">Butterfly Knife | Lore</div>
+                <div class="price">1.230,49€</div>
+                <div class="buttons">
+                    <button>Add to cart</button>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        WORK IN PROGRESS
+        COPYRIGHT MATTHEW FARRELL 2024
+        <a href="https://store.steampowered.com/app/730/CounterStrike_2/">
+            <img src="icons/steam icon2 Background Removed.png" width="100%" class="steam">
+        </a>
+
+        <a href="https://x.com/home" >
+            <img src="icons/X_logo.jpg" class="twitter" width="100%">
+        </a>
+    </div>
+
+    <sript src="script.js"></sript>
+</body>
+</html>
