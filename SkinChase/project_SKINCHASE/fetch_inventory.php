@@ -2,7 +2,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 // Steam API Configuration
-$steamApiKey = "991E7BFF889D160B768D885E7D911E7C"; // Replace with your Steam API key
+$steamApiKey = ""; // Replace with your Steam API key
 $steamId = "76561198851093667"; // Replace with the user's Steam ID
 $gameId = "730"; // CS2 (Counter-Strike 2) App ID
 $inventoryUrl = "https://steamcommunity.com/inventory/$steamId/$gameId/2?l=english&count=5000";
