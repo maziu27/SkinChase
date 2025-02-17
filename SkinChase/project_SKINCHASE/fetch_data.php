@@ -1,5 +1,5 @@
 <?php
-$apiKey = 'gc6cVLCtpLVlUsA6yE7llsV7H63wmTrV'; // Your API Key
+$apiKey = ''; // Your API Key
 $apiUrl = 'https://csfloat.com/api/v1/listings';
 
 // Get query parameters from the request
