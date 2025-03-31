@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS2 Inventory</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <div class="logo">
+            <a href="index.html" class="logo">SkinChase</a>
+            <a href="#">Tools</a>
+            <a href="#">App</a>
+        </div>
+
+        
+
+
+        <div class="balance">
+            <span>n/a EUR</span>
+        </div>
+        <div class="currency">
+            <button class="dropbtn">Currency</button>
+            <div class="dropdown-content">
+                <a href="#">EUR</a>
+                <a href="#">USD</a>
+                <a href="#">CNY</a>
+            </div>
+        </div>
+        <div class="cart">
+
+        </div>
+        <div class="usericon">
+            <a class="usricon" href="https://steamcommunity.com/id/penisfight">
+            <img src="pics/userico.jpg" width="40px"></a>
+            <div class="dropdown-content">
+                <a href="#">Deposit</a>
+                <a href="#">Withdraw</a>
+                <a href="inventory.html">Inventory</a>
+                <a href="#">Stall</a>
+                <a href="#">Support</a>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="sidebar" id="sidebar">
+            <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+                <form action="search.php" method="post">
+                    <h3>Search</h3>
+                    <div class="filters">
+                        <input type="text" placeholder="Search..." id="name" name="name" required>
+                        <input type="number" placeholder="Float from" id="floatFrom" id="floatFrom" name="floatFrom">
+                        <input type="number" placeholder="Float to" id="">
+                        <input type="number" placeholder="Price from">
+                        <input type="number" placeholder="Price to">
+                    </div>
+    
+                    <h3>Special</h3>
+                    <div class="filters">
+                        
+                            <label><input type="checkbox" class="StatTrak"> StatTrak</label><br>
+                            <label><input type="checkbox" class="Souvenir"> Souvenir</label><br>
+                            <label><input type="checkbox" class="Normal"> Normal</label>
+                        
+                    </div>
+    
+                    <div class="filters">
+                            <input type="text" placeholder="Sticker 1" id="sticker1" name="sticker1">
+                            <input type="text" placeholder="Sticker 2" id="sticker2" name="sticker2">
+                            <input type="text" placeholder="Sticker 3" id="sticker3" name="sticker3">
+                            <input type="text" placeholder="Sticker 4" id="sticker4" name="sticker4">
+                            <input type="text" placeholder="Sticker 5" id="sticker5" name="sticker5"> 
+                    </div>
+    
+                    <h3>Listing Type</h3>
+                    <div class="filters"> 
+                        <input type="checkbox" id="all" name="all">All</input>
+                        <input type="checkbox" id="Auction" name="Auction">Auction</input>
+                        <input type="checkbox" id="buynow" name="buynow">Buy Now</input>
+                    </div>
+                    
+                    <input type="Submit" value="Submit">
+                </form>
+        </div>
+
+        <!-- Inventory Display Section -->
+        <div class="product-container" id="inventory">
+            <!-- Inventory items will be dynamically inserted here by JS -->
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>WORK IN PROGRESS COPYRIGHT MATTHEW FARRELL 2025</p>
+        <a href="#" class="steam">Steam</a>
+        <a href="#" class="twitter">Twitter</a>
+    </footer>
+
+    
+    <script src="javaScript/inventory_fetcher.js"></script>
+    <script src="javaScript/products.js"></script>
+    <script src="javaScript/sidebar.js"></script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkinChase</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="header">
+        <div class="logo">SkinChase
+            <a href="#">Tools</a>
+            <a href="#">App</a>
+        </div>
+
+        
+
+
+        <div class="balance">
+            <span>n/a EUR</span>
+        </div>
+        <div class="currency">
+            <button class="dropbtn">Currency</button>
+            <div class="dropdown-content">
+                <a href="#">EUR</a>
+                <a href="#">USD</a>
+                <a href="#">CNY</a>
+            </div>
+        </div>
+        <div class="cart">
+
+        </div>
+        <div class="usericon">
+            <a class="usricon" href="https://steamcommunity.com/id/penisfight">
+            <img src="pics/userico.jpg" width="40px"></a>
+            <div class="dropdown-content" style="float: right;">
+                <a href="#">Deposit</a>
+                <a href="#">Withdraw</a>
+                <a href="inventory.html">Inventory</a>
+                <a href="#">Stall</a>
+                <a href="#">Support</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="category">
+        
+
+    </div>
+
+    <div class="itemtype">
+
+
+    </div>
+
+    <div class="orderby">
+
+    </div>
+
+    <div class="main">
+        
+    <!--formulario sidebar-->
+        <div class="sidebar" id="sidebar">
+            <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+            <form id="filterForm">
+                <h3>Search</h3>
+                <div class="filters">
+                    <input type="text" placeholder="Name" id="name" name="market_hash_name">
+                    <input type="number" placeholder="Float from" id="floatFrom" name="min_float">
+                    <input type="number" placeholder="Float to" id="floatTo" name="max_float">
+                    <input type="number" placeholder="Price from" id="priceFrom" name="min_price">
+                    <input type="number" placeholder="Price to" id="priceTo" name="max_price">
+                </div>
+            
+                <h3>Special</h3>
+                <div class="filters">
+                    <label><input type="checkbox" name="category" value="2"> StatTrak</label><br>
+                    <label><input type="checkbox" name="category" value="3"> Souvenir</label><br>
+                    <label><input type="checkbox" name="category" value="1"> Normal</label>
+                </div>
+            
+                <h3>Listing Type</h3>
+                <div class="filters"> 
+                    <label><input type="radio" name="type" value="buy_now"> Buy Now</label>
+                    <label><input type="radio" name="type" value="auction"> Auction</label>
+                </div>
+            
+                <button type="submit">Filter</button>
+            </form>
+            
+        </div>
+
+        <div class="product-container" id="productContainer"></div>
+
+
+    </div>
+
+    <div class="footer">
+        WORK IN PROGRESS
+        COPYRIGHT MATTHEW FARRELL 2025
+        <a href="https://store.steampowered.com/app/730/CounterStrike_2/">
+            <img src="icons/steam icon2 Background Removed.png" width="100%" class="steam">
+        </a>
+
+        <a href="https://x.com/home" >
+            <img src="icons/X_logo.jpg" class="twitter" width="100%">
+        </a>
+    </div>
+
+    <script src="javaScript/products.js"></script>
+    <script src="javaScript/sidebar.js"></script>
+</body>
+</html>
+
+
+            
