@@ -1,4 +1,4 @@
-/*body {
+body {
     font-family: Arial, sans-serif;
     background-color: #121212;
     color: #eaeaea;
@@ -32,7 +32,7 @@
     font-size: 1rem;
 }
 
-/* balance section */ /*
+/* balance section */
 .header .balance {
     display: flex;
     align-items: center;
@@ -164,7 +164,7 @@
     border-radius: 5px; */
 /* } */
 
-/* Ajuste de posición del botón *//*
+/* Ajuste de posición del botón */
 .toggle-btn {
     background-color: #8a4bfc;
     color: white;
@@ -174,7 +174,7 @@
     cursor: pointer;
     position: absolute;
     top: 10px;
-    left: 320px; /* Posición cuando la sidebar está abierta */ /*
+    left: 320px; /* Posición cuando la sidebar está abierta */
     z-index: 10;
     border-radius: 5px;
     transition: left 0.3s ease;
@@ -185,7 +185,7 @@
     transition: left 0.3s ease;
 }
 
-/* Posición cuando la sidebar está cerrada *//*
+/* Posición cuando la sidebar está cerrada */
 .sidebar.collapsed + .toggle-btn,
 .toggle-btn.moved {
     left: 5px;
@@ -193,7 +193,7 @@
 
 
 
-/* Ajustar la sección de productos cuando la barra está colapsada *//*
+/* Ajustar la sección de productos cuando la barra está colapsada */
 .product-container {
     flex: 1;
     display: grid;
@@ -207,20 +207,20 @@
 }
 
 .main .sidebar.collapsed + .product-container {
-    margin-left: px; /* Ajuste para que se vea bien cuando la sidebar está colapsada *//*
+    margin-left: px; /* Ajuste para que se vea bien cuando la sidebar está colapsada */
 }
 
 
 
 
 
-/*Special, stattrak, souvenir, normal*//*
+/*Special, stattrak, souvenir, normal*/
 .sidebar .filters {
     margin-bottom: 20px;
 }
 
 /*products section*/
-/*
+
 .product-container {
     flex: 1;
     display: grid;
@@ -230,7 +230,7 @@
     overflow: auto ;
     scrollbar-width: none;
     max-height: 100vh;
-     /*test shit for scrolling *//*
+     /*test shit for scrolling */
 }
 
 .product {
@@ -280,7 +280,7 @@
 }
 
 /*footer*/
-/*
+
 .footer {
     text-align: center;
     margin-top: px;
@@ -294,7 +294,7 @@ a:visited { text-decoration: none; color:#888; }
 a:hover { text-decoration: none; color:#888; }
 a:focus { text-decoration: none; color:#888; }
 a:hover, a:active { text-decoration: #888; color:#888 } */
-/*
+
 .steam{ 
     max-width: 42px;
     margin-left: 5px;

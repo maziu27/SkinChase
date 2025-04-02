@@ -1,36 +1,22 @@
-// Fetch inventory from Laravel API
+//js para los productos de cs float
+console.log("Inventory script loaded.");
+
 function fetchInventory() {
-    fetch('/api/fetch-inventory') // Use the Laravel route
-        .then(response => response.json())
+    fetch('/api/fetch-inventory')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
         .then(data => {
             if (data.error) {
-                console.error("Error:", data.error);
+                console.error("Error en la API:", data.error);
                 return;
             }
-            loadInventory(data); // Pass the items to render
+            loadInventory(data);
         })
         .catch(error => {
-            console.error("Failed to fetch inventory:", error);
+            console.error("Error al obtener el inventario:", error);
         });
 }
-
-// Function to render the inventory items in the HTML
-function loadInventory(items) {
-    const inventoryContainer = document.getElementById('inventory');
-    inventoryContainer.innerHTML = ''; // Clear previous inventory
-
-    items.forEach(item => {
-        const itemDiv = document.createElement('div');
-        itemDiv.className = 'product';
-        itemDiv.innerHTML = `
-            <img src="${item.icon_url}" alt="${item.name}">
-            <div class="name">${item.name}</div>
-            <div class="rarity">${item.rarity}</div>
-            <div class="weapon-type">${item.weapon_type}</div>
-        `;
-        inventoryContainer.appendChild(itemDiv);
-    });
-}
-
-// Call fetchInventory function when the page loads
-document.addEventListener('DOMContentLoaded', fetchInventory);
