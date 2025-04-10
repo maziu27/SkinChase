@@ -1,4 +1,61 @@
 document.addEventListener("DOMContentLoaded", function () {
+    // Initialize basket
+    const basket = JSON.parse(localStorage.getItem('basket')) || [];
+    const basketToggle = document.getElementById('basket-toggle');
+    const basketElement = document.getElementById('basket');
+    const basketItems = document.getElementById('basket-items');
+    const basketTotal = document.getElementById('basket-total');
+    const basketData = document.getElementById('basket-data');
+
+    // Basket toggle functionality
+    if (basketToggle && basketElement) {
+        basketToggle.addEventListener('click', function(e) {
+            console.log("Basket toggle clicked");
+            e.stopPropagation();
+            basketElement.classList.toggle('hidden');
+            updateBasketUI();
+        });
+
+        document.addEventListener('click', function(e) {
+            if (!basketElement.contains(e.target) && e.target !== basketToggle) {
+                basketElement.classList.add('hidden');
+            }
+        });
+    }
+
+    function updateBasketUI() {
+        if (!basketItems || !basketTotal) return;
+        
+        basketItems.innerHTML = '';
+        let total = 0;
+
+        basket.forEach((item, index) => {
+            const div = document.createElement('div');
+            div.classList.add('bg-gray-500', 'p-2', 'rounded');
+            div.innerHTML = `
+                <img src="${item.image}" class="w-full h-32 object-contain mb-2 rounded" alt="${item.name}">
+                <p class="text-sm font-semibold">${item.name}</p>
+                <p class="text-sm">Float: ${parseFloat(item.float).toFixed(5)}</p>
+                <p class="text-sm">Price: ${item.price} EUR</p>
+                <button class="text-red-600 text-sm mt-2 remove-item" data-index="${index}">Remove</button>
+            `;
+            basketItems.appendChild(div);
+            total += parseFloat(item.price);
+        });
+
+        basketTotal.textContent = total.toFixed(2);
+        if (basketData) basketData.value = JSON.stringify(basket);
+
+        // Add remove item handlers
+        document.querySelectorAll('.remove-item').forEach(btn => {
+            btn.addEventListener('click', function() {
+                basket.splice(parseInt(this.dataset.index), 1);
+                localStorage.setItem('basket', JSON.stringify(basket));
+                updateBasketUI();
+            });
+        });
+    }
+
     fetch('/api/fetch-data')
         .then(response => response.json())
         .then(responseData => {

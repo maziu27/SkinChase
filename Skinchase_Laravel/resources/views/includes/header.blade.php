@@ -23,7 +23,9 @@
         </div>
 
         <div class="relative">
-           @include('components.basket')
+            <button id="basket-toggle" class="text-white hover:text-purple-400 focus:outline-none">
+                <i class="fas fa-shopping-basket"></i>
+            </button>
         </div>
 
         <div class="relative">

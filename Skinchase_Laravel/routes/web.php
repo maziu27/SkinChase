@@ -15,7 +15,10 @@ Route::get('/home', function(){
 Route::get('/market', [MarketController::class, 'index'])->name("market");
 Route::get('/api/fetch-data',[MarketController::class, 'fetchData']);
 
-Route::get('/api/basket', [BasketController::class, 'getBasket']);
-Route::post('/api/basket/add', [BasketController::class, 'addToBasket']); 
-Route::post('/api/basket/remove', [BasketController::class, 'removeFromBasket']);
-Route::post('/api/basket/clear', [BasketController::class, 'clearBasket']);
+Route::post('/checkout', function (Illuminate\Http\Request $request) {
+    $basket = json_decode($request->input('basket_data'), true);
+    
+    // Process checkout: Save to DB, create order, call payment gateway, etc.
+    
+    return redirect()->back()->with('success', 'Checkout complete!');
+})->name('checkout');
