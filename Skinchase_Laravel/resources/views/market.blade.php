@@ -18,5 +18,6 @@
 @endsection
 
 @section('scripts')    
+    <script src="{{ asset('js/basket.js') }}"></script>
     <script src="{{ asset('js/products.js') }}"></script>
 @endsection
