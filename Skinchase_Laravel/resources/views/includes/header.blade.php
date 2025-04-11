@@ -23,9 +23,10 @@
         </div>
 
         <div class="relative">
-            <button id="basket-toggle" class="text-white hover:text-purple-400 focus:outline-none">
-                <i class="fas fa-shopping-basket"></i>
-            </button>
+        <button id="basket-toggle" class="text-white hover:text-purple-400 focus:outline-none relative">
+            <i class="fas fa-shopping-basket text-xl"></i>
+            <!-- El contador se inserta aquí por JS -->
+        </button>
         </div>
 
         <div class="relative">

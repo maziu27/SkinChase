@@ -9,15 +9,16 @@
 
         <!-- Main Content -->
         <main class="flex-1 overflow-y-auto p-4">
-            <div id="product-container" class="overflow-auto hide-scrollbar bg-gray-800 border-gray-900 grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 gap-4 p-4">
-                
+            <div id="product-container" 
+            class="grid xl:grid-cols-8 lg:grid-cols-6 md:grid-cols-4 sm:grid-cols-3 grid-cols-2  
+             text-center bg-gray-700">
             </div>
-        </main>
     </div>
-
+    <!-- Sidebar de la Cesta -->
+    @include('includes.basket-side')
 @endsection
 
 @section('scripts')    
-    <script src="{{ asset('js/basket.js') }}"></script>
     <script src="{{ asset('js/products.js') }}"></script>
+    
 @endsection
