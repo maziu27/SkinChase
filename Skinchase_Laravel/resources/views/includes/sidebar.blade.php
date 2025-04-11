@@ -1,5 +1,5 @@
+<button class="bg-purple-500 text-white text-2xl m-4 focus:outline-none" onclick="toggleSidebar()">☰</button>
 <div id="sidebar" class="bg-[#1e1e1e] p-5 w-[300px] rounded-[10px]">
-    <button class="text-white text-2xl mb-4 focus:outline-none" onclick="toggleSidebar()">☰</button>
     
     <form action="#" method="post" class="space-y-4">
         @csrf

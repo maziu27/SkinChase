@@ -42,3 +42,26 @@
         </div>
     </div>
 </div>
+<!-- hay que cambiarlo y ponerlo potente pero por ahora lo dejo asi -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const basketToggle = document.getElementById('basket-toggle');
+        const basket = document.getElementById('basket');
+
+        basketToggle.addEventListener('click', function (e) {
+            e.stopPropagation(); // Previene que se cierre inmediatamente por el click global
+            basket.classList.toggle('hidden');
+        });
+
+        // Cierra el basket si haces clic fuera de él
+        document.addEventListener('click', function (e) {
+            const isClickInsideBasket = basket.contains(e.target);
+            const isClickOnToggle = basketToggle.contains(e.target);
+
+            if (!isClickInsideBasket && !isClickOnToggle) {
+                basket.classList.add('hidden');
+            }
+        });
+    });
+
+</script>

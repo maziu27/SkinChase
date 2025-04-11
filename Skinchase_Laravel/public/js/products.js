@@ -65,6 +65,8 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 });
 
+
+// Function to load products into the UI
 function loadProducts(products) {
     const productContainer = document.getElementById('product-container');
     if (!productContainer) return;
