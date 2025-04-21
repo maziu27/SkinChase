@@ -7,6 +7,8 @@
         <a href="{{ route('market') }}" class="text-white hover:text-purple-400">Market</a>
         <a href="#" class="text-white hover:text-purple-400">Tools</a>
         <a href="#" class="text-white hover:text-purple-400">App</a>
+        <a href="{{ route('test') }}" class="text-white hover:text-purple-400">TESTING</a>
+
     </div>
 
     <div class="flex items-center gap-4 ml-auto">

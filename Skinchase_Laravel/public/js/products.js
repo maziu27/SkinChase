@@ -56,11 +56,14 @@ function loadProducts(products) {
 
         const productElement = document.createElement('div');
         productElement.classList.add('product');
+
+        //primer boton para añadir el producto al carrito y el otro para comprarlo de inmediato
         productElement.innerHTML = `
             <h3 class="text-xs color-white font-semibold mt-2">${item.market_hash_name}</h3>
             <img src="https://steamcommunity-a.akamaihd.net/economy/image/${item.icon_url}" alt="Skin Image">
             <p class="text-white">Price: <span class="font-bold">${(product.price / 100).toFixed(2)} EUR</span></p>
             <p class="text-gray-500">Float Value: ${parseFloat(item.float_value).toFixed(5)}</p>
+            
             <button class="add-to-basket mt-2 bg-blue-500 color-white px-4 py-2 rounded hover:bg-blue-600" 
                 data-id="${item.asset_id}"
                 data-name="${item.market_hash_name}"
@@ -68,9 +71,52 @@ function loadProducts(products) {
                 data-image="${item.icon_url}">
                 Add to cart
             </button>
+            
+            <button class="buy-now mt-2 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+                    data-id="${item.asset_id}"
+                    data-name="${item.market_hash_name}"
+                    data-price="${(product.price / 100).toFixed(2)}"
+                    data-image="${item.icon_url}">
+                    Buy Now
+                </button>
         `;
 
         productContainer.appendChild(productElement);
+    });
+
+    // codigo de pago, coger productos de la api para el enlace stripe
+    fetch('/api/products') // adjust this URL to your actual endpoint
+        .then(res => res.json())
+        .then(data => loadProducts(data));
+
+    // codigo de pago, evento del boton comprar ahora
+    document.addEventListener('click', function (e) {
+        if (e.target.classList.contains('buy-now')) {
+            const btn = e.target;
+            const productData = {
+                id: btn.dataset.id,
+                name: btn.dataset.name,
+                price: btn.dataset.price,
+                image: btn.dataset.image
+            };
+
+            fetch('/create-stripe-link', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                },
+                body: JSON.stringify(productData)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.url) {
+                        window.location.href = data.url;
+                    } else {
+                        alert("Payment link failed.");
+                    }
+                });
+        }
     });
 
     // Añadir evento a cada botón de añadir a la cesta

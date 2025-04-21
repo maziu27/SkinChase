@@ -1,11 +1,10 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Stripe\Stripe;
-use Stripe\Product;
-use Stripe\Price;
-use Stripe\PaymentLink;
+use Stripe\Checkout\Session;
 
 class StripeLinkController extends Controller
 {
@@ -18,27 +17,26 @@ class StripeLinkController extends Controller
         $image = $request->input('image');
 
         try {
-            // 1. Create product in Stripe
-            $stripeProduct = Product::create([
-                'name' => $name,
-                'images' => ["https://steamcommunity-a.akamaihd.net/economy/image/$image"],
+            $checkoutSession = Session::create([
+                'payment_method_types' => ['card'], // ✅ Only allow card
+                'line_items' => [[
+                    'price_data' => [
+                        'currency' => 'eur',
+                        'product_data' => [
+                            'name' => $name,
+                            'images' => ["https://steamcommunity-a.akamaihd.net/economy/image/$image"],
+                        ],
+                        'unit_amount' => intval($price),
+                    ],
+                    'quantity' => 1,
+                ]],
+                'mode' => 'payment',
+                'success_url' => url('/payment-success'),
+                'cancel_url' => url('/payment-cancel'),
             ]);
 
-            // 2. Create price
-            $stripePrice = Price::create([
-                'product' => $stripeProduct->id,
-                'unit_amount' => intval($price),
-                'currency' => 'eur',
-            ]);
+            return response()->json(['url' => $checkoutSession->url]);
 
-            // 3. Create payment link
-            $paymentLink = PaymentLink::create([
-                'line_items' => [
-                    ['price' => $stripePrice->id, 'quantity' => 1],
-                ],
-            ]);
-
-            return response()->json(['url' => $paymentLink->url]);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
