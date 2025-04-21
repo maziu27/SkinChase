@@ -8,17 +8,18 @@ use Stripe\Checkout\Session;
 
 class StripeLinkController extends Controller
 {
+    //funcion para crear enlace para solo un producto
     public function create(Request $request)
     {
         Stripe::setApiKey(env('STRIPE_SECRET'));
 
         $name = $request->input('name');
-        $price = floatval($request->input('price')) * 100; // Convert to cents
+        $price = floatval($request->input('price')) * 100; // conversion a centimos
         $image = $request->input('image');
 
         try {
             $checkoutSession = Session::create([
-                'payment_method_types' => ['card'], // ✅ Only allow card
+                'payment_method_types' => ['card'], // permitir solo tarjeta
                 'line_items' => [[
                     'price_data' => [
                         'currency' => 'eur',

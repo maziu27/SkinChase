@@ -78,7 +78,7 @@ function loadProducts(products) {
                     data-price="${(product.price / 100).toFixed(2)}"
                     data-image="${item.icon_url}">
                     Buy Now
-                </button>
+            </button>
         `;
 
         productContainer.appendChild(productElement);
@@ -118,6 +118,7 @@ function loadProducts(products) {
                 });
         }
     });
+
 
     // Añadir evento a cada botón de añadir a la cesta
     document.querySelectorAll('.add-to-basket').forEach(button => {

@@ -22,6 +22,7 @@ Route::get('/test', function () {
 //creacion del enlace de pago
 Route::post('/create-stripe-link', [StripeLinkController::class, 'create']);
 
+
 //routes para redireccionamiento de pago
 Route::view('/payment-success', 'checkout-success');
 Route::view('/payment-cancel', 'checkout-cancel');
