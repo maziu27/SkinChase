@@ -1,0 +1,126 @@
+<!-- PAGINA DE VENTA SOLO PARA PROBAR PASARELA DE PAGO STRIPE -->
+
+<!--
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⡠⠤⠐⠒⠒⠲⠤⢤⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⣀⠴⠛⠁⠀⢈⠀⢒⣀⡤⠤⠄⠈⠑⢄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⣠⠞⠑⠚⠀⠀⠁⠀⠒⢉⣤⠤⠒⠒⠒⠀⠈⣷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⢠⡞⢡⢦⠀⠀⠀⠀⠀⠀⠚⠁⣀⡤⠔⠒⠒⠒⢠⠏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⢠⡏⣠⠾⠈⠀⠀⠀⠀⠀⠀⠀⠀⢁⣠⠤⢖⠒⠒⠛⢄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⡞⠁⠀⠀⠈⢧⣀⠀⠀⢳⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠐⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡇⠀⠀⡤⣶⣮⣿⡽⣶⣾⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠙⣧⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢳⡤⠖⠊⠹⣿⣽⡗⠚⠻⠷⣒⢶⡄⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠈⠛⠳⠤⢤⣤⡤⠤⠴⣦⠀⠀⠳⣄⣀⠀⣙⡿⢣⠀⠀⠀⠈⠻⡇⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⢀⣤⠖⢻⠛⠒⠀⠀⠉⠉⠁⢀⣸⡇⠀⠀⠀⠀⢹⡀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠘⢧⡀⠚⠃⠒⠒⠒⠒⠉⠉⣁⣀⣷⡀⠀⠀⠀⠀⡇⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠑⠒⠒⠚⢻⡉⠉⢹⡄⠘⢷⡀⠀⠀⢠⡇⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠳⡀⠀⢧⠀⠈⠛⠒⠒⠋⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢱⡄⠘⣆⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡜⠻⣄⢳⡙⣷⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠞⠣⡀⠘⣿⣿⠛⡟⠲⣄⡀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣖⠋⠀⠀⠀⡈⠛⠃⠙⠀⢳⡀⠀⠙⣶⡀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡰⠟⠉⣷⣄⣠⣾⠁⠀⠀⠀⠀⠸⡗⠦⢴⣁⠉⠳⢤⡀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡴⠋⠀⣠⠎⠛⠛⠁⡇⠀⠀⠀⠀⠀⠀⢻⠀⠀⠈⠳⣄⠀⠈⣷
+⠀⠀⠀⠀⠀⠀⠀⢀⡴⠋⠐⢦⣞⠁⠀⠀⠀⠀⡇⠀⠀⠀⠀⠀⠀⠀⡇⠀⢀⡜⠁⠀⢰⠃
+⠀⠀⠀⠀⠀⠀⠀⠀⠳⣄⠀⠀⠈⠙⠲⠤⣀⣠⡇⠀⠀⠀⠀⠀⠀⠀⢹⣠⠞⠀⠀⢠⠋⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠓⢄⡀⠀⠀⠀⠀⠙⢷⣄⠀⠀⠀⠀⠀⠀⠈⡏⠀⠀⢠⣷⣒⣶
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣓⣦⡀⠀⠀⠀⠹⡆⠀⠀⠀⠀⠀⠀⢳⠀⠀⣯⣭⢁⡟
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣏⠹⣷⣾⣿⡄⠀⠀⢀⣿⣤⣤⣤⣤⠴⠚⣏⠀⠀⠸⣠⠎⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠳⢄⣈⠉⠁⣀⣴⠟⠁⠀⠀⠀⠀⠀⠀⡏⠉⠉⠉⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠉⠉⠹⢦⡀⠀⠀⠀⠀⠀⣼⠃⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢷⠀⠀⢰⠖⢻⡇⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠀⠀⡞⠀⣿⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠀⠀⡇⢸⡇⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠀⠀⡇⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠀⠀⡇⢻⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠀⠀⡇⢸⠀⠀⠀⠀⠀⡀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣰⠋⠙⡆⠀⠀⠀⣸⠀⠀⡇⢸⡀⠀⠀⠀⡶⠏⠉⢦⡀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⣟⡺⢦⣸⣀⣠⢴⠇⠀⠀⡇⠘⣧⠤⠤⢼⡣⢦⣤⢸⡇
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡸⢹⣏⡇⠀⠻⡗⠶⠋⠀⠀⢰⡇⠀⢻⣀⣠⠏⠀⣞⣮⢻⡇
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣧⣤⠀⡀⠀⠀⠀⠀⠀⠀⠀⣸⠀⠀⠊⠁⡼⠀⠀⠓⣃⣸⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣛⠺⢭⣽⣦⠤⠤⠤⠒⠒⠉⠉⠉⠒⠤⠤⣄⣠⣯⣷⣿⣟⠀
+
+
+
+-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>SkinChase</title>
+    <script src="{{ asset('js/products.js') }}"></script>
+
+</head>
+<body class="bg-gray-900 text-white">
+
+    <div id="product-container" class="grid grid-cols-2 md:grid-cols-4 gap-4 p-4"></div>
+
+    <script>
+    // 👇 STEP 4: JS function to load products
+    function loadProducts(products) {
+        const productContainer = document.getElementById('product-container');
+        if (!productContainer) return;
+
+        productContainer.innerHTML = '';
+
+        products.forEach(product => {
+            const item = product.item;
+            if (!item || !item.asset_id || !product.price) return;
+
+            const productElement = document.createElement('div');
+            productElement.classList.add('bg-gray-800', 'p-4', 'rounded', 'shadow');
+
+            productElement.innerHTML = `
+                <h3 class="text-xs font-semibold mt-2">${item.market_hash_name}</h3>
+                <img src="https://steamcommunity-a.akamaihd.net/economy/image/${item.icon_url}" alt="Skin Image">
+                <p>Price: <span class="font-bold">${(product.price / 100).toFixed(2)} EUR</span></p>
+                <p class="text-gray-400">Float Value: ${parseFloat(item.float_value).toFixed(5)}</p>
+                <button class="buy-now mt-2 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+                    data-id="${item.asset_id}"
+                    data-name="${item.market_hash_name}"
+                    data-price="${(product.price / 100).toFixed(2)}"
+                    data-image="${item.icon_url}">
+                    Buy Now
+                </button>
+            `;
+
+            productContainer.appendChild(productElement);
+        });
+    }
+
+    // 👇 STEP 5: Fetch products from your API
+    fetch('/api/products') // adjust this URL to your actual endpoint
+        .then(res => res.json())
+        .then(data => loadProducts(data));
+
+    // 👇 STEP 6: Handle Buy Now click and create Stripe Link
+    document.addEventListener('click', function (e) {
+        if (e.target.classList.contains('buy-now')) {
+            const btn = e.target;
+            const productData = {
+                id: btn.dataset.id,
+                name: btn.dataset.name,
+                price: btn.dataset.price,
+                image: btn.dataset.image
+            };
+
+            fetch('/create-stripe-link', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                },
+                body: JSON.stringify(productData)
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.url) {
+                    window.location.href = data.url;
+                } else {
+                    alert("Payment link failed.");
+                }
+            });
+        }
+    });
+    </script>
+</body>
+</html>
