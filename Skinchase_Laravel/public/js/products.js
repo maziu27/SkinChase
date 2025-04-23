@@ -1,63 +1,66 @@
+// Esperar a que el DOM esté completamente cargado
 document.addEventListener("DOMContentLoaded", function () {
-    // Cargar productos desde la API
+    // 1. Cargar productos desde la API al iniciar la página
     fetch('/api/fetch-data')
         .then(response => response.json())
         .then(responseData => {
+            // Validar que la respuesta contenga datos válidos
             if (responseData.data && Array.isArray(responseData.data)) {
-                loadProducts(responseData.data);
-                updateBasketCount(); // Mostrar el contador inicial de productos en la cesta
+                loadProducts(responseData.data); // Mostrar los productos en la interfaz
+                updateBasketCount(); // Actualizar el contador de productos en la cesta
             }
         });
 
-    // Mostrar/Ocultar el sidebar al hacer clic en el botón del carrito
+    // 2. Abrir el sidebar del carrito al hacer clic en el icono
     const basketToggle = document.getElementById('basket-toggle');
     if (basketToggle) {
         basketToggle.addEventListener('click', () => {
             const sidebar = document.getElementById('basket-sidebar');
-            sidebar.classList.remove('translate-x-full');
+            sidebar.classList.remove('translate-x-full'); // Mostrar sidebar (deslizar hacia adentro)
             sidebar.classList.add('translate-x-0');
-            renderBasketItems(); // Mostrar los productos en el sidebar
+            renderBasketItems(); // Mostrar productos actuales en el carrito
         });
     }
 
-    // Cerrar el sidebar
+    // 3. Cerrar el sidebar al hacer clic en la "X"
     const closeSidebar = document.getElementById('close-basket');
     if (closeSidebar) {
         closeSidebar.addEventListener('click', () => {
             const sidebar = document.getElementById('basket-sidebar');
-            sidebar.classList.remove('translate-x-0');
+            sidebar.classList.remove('translate-x-0'); // Ocultar sidebar (deslizar hacia afuera)
             sidebar.classList.add('translate-x-full');
         });
     }
 
-    // Vaciar la cesta
+    // 4. Botón para vaciar completamente el carrito
     const clearBasketButton = document.getElementById('clear-basket');
     if (clearBasketButton) {
         clearBasketButton.addEventListener('click', () => {
             if (confirm("¿Seguro que quieres vaciar la cesta?")) {
-                localStorage.removeItem('basket');
-                updateBasketCount();
-                renderBasketItems();
+                localStorage.removeItem('basket'); // Eliminar el carrito del localStorage
+                updateBasketCount(); // Actualizar el contador del carrito
+                renderBasketItems(); // Actualizar la vista del sidebar del carrito
             }
         });
     }
 });
 
-// Función para cargar productos en la UI
+// Función para mostrar los productos en la UI
 function loadProducts(products) {
     const productContainer = document.getElementById('product-container');
     if (!productContainer) return;
 
-    productContainer.innerHTML = '';
+    productContainer.innerHTML = ''; // Limpiar el contenedor
 
+    // Iterar por cada producto recibido
     products.forEach(product => {
         const item = product.item;
-        if (!item || !item.asset_id || !product.price) return;
+        if (!item || !item.asset_id || !product.price) return; // Validación de datos
 
         const productElement = document.createElement('div');
         productElement.classList.add('product');
 
-        //primer boton para añadir el producto al carrito y el otro para comprarlo de inmediato
+        // Estructura HTML de cada producto
         productElement.innerHTML = `
             <h3 class="text-xs color-white font-semibold mt-2">${item.market_hash_name}</h3>
             <img src="https://steamcommunity-a.akamaihd.net/economy/image/${item.icon_url}" alt="Skin Image">
@@ -81,18 +84,18 @@ function loadProducts(products) {
             </button>
         `;
 
+        // Agregar el producto al contenedor
         productContainer.appendChild(productElement);
     });
 
-    // codigo de pago, coger productos de la api para el enlace stripe
-    fetch('/api/products') // adjust this URL to your actual endpoint
-        .then(res => res.json())
-        .then(data => loadProducts(data));
+    // EVENTOS DE LOS BOTONES
 
-    // codigo de pago, evento del boton comprar ahora
+    // Botón "Buy Now" → redirige a Stripe
     document.addEventListener('click', function (e) {
         if (e.target.classList.contains('buy-now')) {
             const btn = e.target;
+
+            // Datos del producto a enviar
             const productData = {
                 id: btn.dataset.id,
                 name: btn.dataset.name,
@@ -100,6 +103,7 @@ function loadProducts(products) {
                 image: btn.dataset.image
             };
 
+            // Enviar al backend para generar link de pago de Stripe
             fetch('/create-stripe-link', {
                 method: 'POST',
                 headers: {
@@ -111,16 +115,15 @@ function loadProducts(products) {
                 .then(res => res.json())
                 .then(data => {
                     if (data.url) {
-                        window.location.href = data.url;
+                        window.location.href = data.url; // Redirigir a Stripe
                     } else {
-                        alert("Payment link failed.");
+                        alert("Payment link failed."); // Mostrar error
                     }
                 });
         }
     });
 
-
-    // Añadir evento a cada botón de añadir a la cesta
+    // Botón "Add to cart" → agregar producto al carrito
     document.querySelectorAll('.add-to-basket').forEach(button => {
         button.addEventListener('click', () => {
             const product = {
@@ -129,37 +132,37 @@ function loadProducts(products) {
                 price: button.getAttribute('data-price'),
                 image: button.getAttribute('data-image')
             };
-            addToBasket(product);
+            addToBasket(product); // Añadir al carrito
         });
     });
 }
 
-// Añadir producto a la cesta
+// Añadir producto al carrito si no está repetido
 function addToBasket(product) {
-    let basket = getBasket();
+    let basket = getBasket(); // Obtener carrito actual
 
-    // Verificamos si el producto ya está en la cesta
+    // Verificar si ya está agregado
     if (!basket.some(item => item.id === product.id)) {
-        basket.push(product);
-        localStorage.setItem('basket', JSON.stringify(basket));
-        updateBasketCount();
+        basket.push(product); // Agregar nuevo producto
+        localStorage.setItem('basket', JSON.stringify(basket)); // Guardar en localStorage
+        updateBasketCount(); // Actualizar contador visual
     } else {
-        alert(`${product.name} is already in you basket.`);
+        alert(`${product.name} is already in your basket.`); // Mensaje si ya existe
     }
 }
 
-// Obtener la cesta desde localStorage
+// Obtener productos del carrito desde localStorage
 function getBasket() {
     return JSON.parse(localStorage.getItem('basket')) || [];
 }
 
-// Actualizar el contador de productos en el carrito (cesta)
+// Actualizar contador visual del icono del carrito
 function updateBasketCount() {
     const basketToggle = document.getElementById('basket-toggle');
     const basket = getBasket();
     let count = basket.length;
 
-    // Si no existe un badge de conteo, lo creamos
+    // Buscar o crear el "badge" de cantidad
     let countBadge = basketToggle.querySelector('.basket-count');
     if (!countBadge) {
         countBadge = document.createElement('span');
@@ -167,20 +170,22 @@ function updateBasketCount() {
         basketToggle.appendChild(countBadge);
     }
 
-    countBadge.textContent = count;
+    countBadge.textContent = count; // Actualizar número
 }
 
-// Mostrar los productos en el sidebar
+// Mostrar productos actuales en el carrito (sidebar)
 function renderBasketItems() {
     const basket = getBasket();
     const container = document.getElementById('basket-items');
     container.innerHTML = '';
 
+    // Si está vacío, mostrar mensaje
     if (basket.length === 0) {
         container.innerHTML = '<p class="text-gray-400">Your basket is empty.</p>';
         return;
     }
 
+    // Mostrar cada producto del carrito
     basket.forEach(item => {
         const div = document.createElement('div');
         div.className = 'flex items-center justify-between bg-gray-800 p-2 rounded';
@@ -195,20 +200,20 @@ function renderBasketItems() {
         container.appendChild(div);
     });
 
-    // Eliminar productos de la cesta
+    // Evento para eliminar un producto individual del carrito
     document.querySelectorAll('.remove-item').forEach(btn => {
         btn.addEventListener('click', () => {
             const id = btn.getAttribute('data-id');
-            removeFromBasket(id);
+            removeFromBasket(id); // Eliminar producto específico
         });
     });
 }
 
-// Eliminar un producto de la cesta
+// Eliminar producto del carrito por ID
 function removeFromBasket(id) {
-    let basket = getBasket();
-    basket = basket.filter(item => item.id !== id);
-    localStorage.setItem('basket', JSON.stringify(basket));
-    updateBasketCount();
-    renderBasketItems();
+    let basket = getBasket(); // Obtener carrito actual
+    basket = basket.filter(item => item.id !== id); // Quitar producto
+    localStorage.setItem('basket', JSON.stringify(basket)); // Guardar carrito actualizado
+    updateBasketCount(); // Actualizar contador
+    renderBasketItems(); // Refrescar vista del sidebar
 }
