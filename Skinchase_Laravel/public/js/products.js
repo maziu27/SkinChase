@@ -62,27 +62,32 @@ function loadProducts(products) {
 
         // Estructura HTML de cada producto
         productElement.innerHTML = `
-            <h3 class="text-xs color-white font-semibold mt-2">${item.market_hash_name}</h3>
-            <img src="https://steamcommunity-a.akamaihd.net/economy/image/${item.icon_url}" alt="Skin Image">
-            <p class="text-white">Price: <span class="font-bold">${(product.price / 100).toFixed(2)} EUR</span></p>
-            <p class="text-gray-500">Float Value: ${parseFloat(item.float_value).toFixed(5)}</p>
-            
-            <button class="add-to-basket mt-2 bg-blue-500 color-white px-4 py-2 rounded hover:bg-blue-600" 
+        <div class="bg-gray-800 p-7 hover:scale-105 rounded-xl shadow-lg text-center">
+        <h3 class="text-sm text-white font-semibold mb-2 truncate">${item.market_hash_name}</h3>
+        <img src="https://steamcommunity-a.akamaihd.net/economy/image/${item.icon_url}" alt="Skin Image" class="w-full h-32 object-contain rounded-md mb-3 border border-gray-700">
+        <p class="text-white text-sm mb-1">Price: <span class="font-bold text-purple-400">${(product.price / 100).toFixed(2)} EUR</span></p>
+        <p class="text-gray-400 text-xs mb-4">Float Value: ${parseFloat(item.float_value).toFixed(5)}</p>
+        
+        <div class="flex flex-col gap-2">
+            <button class="add-to-basket bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-all duration-200"
                 data-id="${item.asset_id}"
                 data-name="${item.market_hash_name}"
                 data-price="${(product.price / 100).toFixed(2)}"
                 data-image="${item.icon_url}">
-                Add to cart
+                Add to Cart
             </button>
             
-            <button class="buy-now mt-2 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
-                    data-id="${item.asset_id}"
-                    data-name="${item.market_hash_name}"
-                    data-price="${(product.price / 100).toFixed(2)}"
-                    data-image="${item.icon_url}">
-                    Buy Now
+            <button class="buy-now bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition-all duration-200"
+                data-id="${item.asset_id}"
+                data-name="${item.market_hash_name}"
+                data-price="${(product.price / 100).toFixed(2)}"
+                data-image="${item.icon_url}">
+                Buy Now
             </button>
-        `;
+        </div>
+    </div>
+`;
+
 
         // Agregar el producto al contenedor
         productContainer.appendChild(productElement);

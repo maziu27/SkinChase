@@ -11,12 +11,6 @@
     <div class="p-4 border-t border-gray-700">
         <button id="clear-basket" class="w-full bg-red-600 hover:bg-red-700 text-white py-2 rounded">Empty cart</button>
     </div>
-    <!-- placeholder checkout button -->
-    <!--
-                <div class="p-4 border-t border-gray-700">
-                    <button id="" class="w-full bg-lime-600 hover:bg-lime-900 text-white py-2 rounded">Checkout</button>
-                </div>
-                -->
 
     <!-- checkout boton -->
     <!-- checkout botón (pago múltiple) -->
