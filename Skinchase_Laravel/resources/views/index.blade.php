@@ -6,6 +6,8 @@
 
 <img class="mx-auto" src="{{ asset(path: 'images/SkinChase_logo-removebg-preview.png') }}" alt="Logo de SkinChase">
 
-    
+    <a class="text-center" href="{{ url('/auth/steam') }}">
+      <img src="https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_01.png" alt="Sign in through Steam">
+    </a>
 @endsection()
 
