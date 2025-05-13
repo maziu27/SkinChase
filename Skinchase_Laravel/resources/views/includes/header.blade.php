@@ -32,10 +32,11 @@
         </div>
 
         <div class="relative">
-            <a href="https://steamcommunity.com/id/penisfight">
+            <!--<a href="https://steamcommunity.com/id/penisfight">-->
+            <a href="{{ route('register') }}" >
                 <img src="https://avatars.fastly.steamstatic.com/1792a5b9ef50f593698f3a5e6a9dad56c86b3b23_full.jpg" class="w-10 rounded-md">
             </a>
-            <div class="absolute hidden bg-gray-100 text-black mt-1 w-40 shadow-md">
+            <div class="absolute hidden hover:block bg-gray-100 text-black mt-1 w-40 shadow-md">
                 <a href="#" class="block px-4 py-2 hover:bg-gray-300">Deposit</a>
                 <a href="#" class="block px-4 py-2 hover:bg-gray-300">Withdraw</a>
                 <a href="#" class="block px-4 py-2 hover:bg-gray-300">Inventory</a>

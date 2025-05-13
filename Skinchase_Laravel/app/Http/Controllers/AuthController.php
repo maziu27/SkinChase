@@ -39,12 +39,14 @@ class AuthController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6|confirmed',
+            'trade_link' => 'required|url'
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'trade_link' => $request->trade_link,
         ]);
 
         Auth::login($user);
