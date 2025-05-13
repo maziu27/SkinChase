@@ -31,6 +31,7 @@ Route::view('/payment-cancel', 'checkout-cancel');
 Route::get('/market', [MarketController::class, 'index'])->name("market");
 Route::get('/api/fetch-data',[MarketController::class, 'fetchData']);
 
+/*Rutas y elegancia para autenticación*/
 
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
@@ -41,5 +42,5 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware('auth');
+    return view('auth/dashboard');
+});

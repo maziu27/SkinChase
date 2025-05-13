@@ -1,5 +1,10 @@
 <?php
 
+/*
+Controlador para autenticación de usuarios, incluyendo registro, inicio de sesión
+
+
+*/
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -35,6 +40,7 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
+        //validaciones elegantes del formulario
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users',
