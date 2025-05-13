@@ -33,7 +33,7 @@
 
         <div class="relative">
             <!--<a href="https://steamcommunity.com/id/penisfight">-->
-            <a href="{{ route('register') }}" >
+            <a href="{{ route('login') }}" >
                 <img src="https://avatars.fastly.steamstatic.com/1792a5b9ef50f593698f3a5e6a9dad56c86b3b23_full.jpg" class="w-10 rounded-md">
             </a>
             <div class="absolute hidden hover:block bg-gray-100 text-black mt-1 w-40 shadow-md">
@@ -46,3 +46,11 @@
         </div>
     </div>
 </div>
+
+<script> //para debugear
+    @auth
+        console.log('User is logged in: {{ Auth::user()->name }}');
+    @else
+        console.log('No one is logged in');
+    @endauth
+</script>
