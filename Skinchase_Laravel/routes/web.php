@@ -43,4 +43,8 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/dashboard', function () {
     return view('auth/dashboard');
+})->name('dashboard');
+
+Route::get('/', function () {
+    return view('auth/redirect');
 });
