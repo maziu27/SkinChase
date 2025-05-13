@@ -49,7 +49,7 @@
 
 <script> //para debugear
     @auth
-        console.log('User is logged in: {{ Auth::user()->name }}');
+        console.log('{{ Auth::user()->name }} is logged in');
     @else
         console.log('No one is logged in');
     @endauth
