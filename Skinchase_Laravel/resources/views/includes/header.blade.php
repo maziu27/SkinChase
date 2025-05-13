@@ -12,7 +12,7 @@
     </div>
 
     <div class="flex items-center gap-4 ml-auto">
-        <span class="bg-gray-700 px-3 py-1 rounded">n/a EUR</span>
+        <!--<span class="bg-gray-700 px-3 py-1 rounded">n/a EUR</span> -->
 
         <div class="relative">
             <button class="bg-gray-700 text-white px-3 py-1 rounded">Currency</button>
@@ -33,7 +33,7 @@
 
         <div class="relative">
             <!--<a href="https://steamcommunity.com/id/penisfight">-->
-            <a href="{{ route('login') }}" >
+            <a href="{{ route('redirect') }}" >
                 <img src="https://avatars.fastly.steamstatic.com/1792a5b9ef50f593698f3a5e6a9dad56c86b3b23_full.jpg" class="w-10 rounded-md">
             </a>
             <div class="absolute hidden hover:block bg-gray-100 text-black mt-1 w-40 shadow-md">

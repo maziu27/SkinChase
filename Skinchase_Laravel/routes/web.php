@@ -47,4 +47,4 @@ Route::get('/dashboard', function () {
 
 Route::get('/', function () {
     return view('auth/redirect');
-});
+})->name('redirect');
