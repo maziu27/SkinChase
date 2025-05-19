@@ -5,7 +5,7 @@ use App\Http\Controllers\MarketController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StripeLinkController;
 use App\Http\Controllers\AuthController;
-
+use App\Http\Controllers\mySQLController;
 
 Route::get('/inventory', function () {
     return view('inventory');
@@ -15,10 +15,14 @@ Route::get('/home', function(){
     return view('index');
 })->name("home");
 
-//test route para probar stripe
+//test routes para probar MYSQL 
 Route::get('/test', function () {
-    return view('stripeTest');
+    return view('SQLTest');
 })->name("test");
+// para la vista de prueba que saca las mierdas de la base de datos
+Route::get('/items', [mySQLController::class, 'getItemsJson']);
+
+
 
 //creacion del enlace de pago
 Route::post('/create-stripe-link', [StripeLinkController::class, 'create']);

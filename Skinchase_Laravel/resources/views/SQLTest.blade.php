@@ -1,129 +1,54 @@
-<!-- PAGINA DE VENTA SOLO PARA PROBAR PASARELA DE PAGO STRIPE -->
 
-<!--
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⡠⠤⠐⠒⠒⠲⠤⢤⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⣀⠴⠛⠁⠀⢈⠀⢒⣀⡤⠤⠄⠈⠑⢄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⣠⠞⠑⠚⠀⠀⠁⠀⠒⢉⣤⠤⠒⠒⠒⠀⠈⣷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⢠⡞⢡⢦⠀⠀⠀⠀⠀⠀⠚⠁⣀⡤⠔⠒⠒⠒⢠⠏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⢠⡏⣠⠾⠈⠀⠀⠀⠀⠀⠀⠀⠀⢁⣠⠤⢖⠒⠒⠛⢄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⡞⠁⠀⠀⠈⢧⣀⠀⠀⢳⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠐⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡇⠀⠀⡤⣶⣮⣿⡽⣶⣾⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠙⣧⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢳⡤⠖⠊⠹⣿⣽⡗⠚⠻⠷⣒⢶⡄⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠈⠛⠳⠤⢤⣤⡤⠤⠴⣦⠀⠀⠳⣄⣀⠀⣙⡿⢣⠀⠀⠀⠈⠻⡇⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⢀⣤⠖⢻⠛⠒⠀⠀⠉⠉⠁⢀⣸⡇⠀⠀⠀⠀⢹⡀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠘⢧⡀⠚⠃⠒⠒⠒⠒⠉⠉⣁⣀⣷⡀⠀⠀⠀⠀⡇⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠑⠒⠒⠚⢻⡉⠉⢹⡄⠘⢷⡀⠀⠀⢠⡇⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠳⡀⠀⢧⠀⠈⠛⠒⠒⠋⠀⠀⠀⠀⠀⠀⠀-]
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢱⡄⠘⣆⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡜⠻⣄⢳⡙⣷⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠞⠣⡀⠘⣿⣿⠛⡟⠲⣄⡀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣖⠋⠀⠀⠀⡈⠛⠃⠙⠀⢳⡀⠀⠙⣶⡀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡰⠟⠉⣷⣄⣠⣾⠁⠀⠀⠀⠀⠸⡗⠦⢴⣁⠉⠳⢤⡀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡴⠋⠀⣠⠎⠛⠛⠁⡇⠀⠀⠀⠀⠀⠀⢻⠀⠀⠈⠳⣄⠀⠈⣷
-⠀⠀⠀⠀⠀⠀⠀⢀⡴⠋⠐⢦⣞⠁⠀⠀⠀⠀⡇⠀⠀⠀⠀⠀⠀⠀⡇⠀⢀⡜⠁⠀⢰⠃
-⠀⠀⠀⠀⠀⠀⠀⠀⠳⣄⠀⠀⠈⠙⠲⠤⣀⣠⡇⠀⠀⠀⠀⠀⠀⠀⢹⣠⠞⠀⠀⢠⠋⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠓⢄⡀⠀⠀⠀⠀⠙⢷⣄⠀⠀⠀⠀⠀⠀⠈⡏⠀⠀⢠⣷⣒⣶
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣓⣦⡀⠀⠀⠀⠹⡆⠀⠀⠀⠀⠀⠀⢳⠀⠀⣯⣭⢁⡟
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣏⠹⣷⣾⣿⡄⠀⠀⢀⣿⣤⣤⣤⣤⠴⠚⣏⠀⠀⠸⣠⠎⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠳⢄⣈⠉⠁⣀⣴⠟⠁⠀⠀⠀⠀⠀⠀⡏⠉⠉⠉⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠉⠉⠹⢦⡀⠀⠀⠀⠀⠀⣼⠃⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢷⠀⠀⢰⠖⢻⡇⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠀⠀⡞⠀⣿⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠀⠀⡇⢸⡇⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠀⠀⡇⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠀⠀⡇⢻⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠀⠀⡇⢸⠀⠀⠀⠀⠀⡀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣰⠋⠙⡆⠀⠀⠀⣸⠀⠀⡇⢸⡀⠀⠀⠀⡶⠏⠉⢦⡀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⣟⡺⢦⣸⣀⣠⢴⠇⠀⠀⡇⠘⣧⠤⠤⢼⡣⢦⣤⢸⡇
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡸⢹⣏⡇⠀⠻⡗⠶⠋⠀⠀⢰⡇⠀⢻⣀⣠⠏⠀⣞⣮⢻⡇
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣧⣤⠀⡀⠀⠀⠀⠀⠀⠀⠀⣸⠀⠀⠊⠁⡼⠀⠀⠓⣃⣸⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣛⠺⢭⣽⣦⠤⠤⠤⠒⠒⠉⠉⠉⠒⠤⠤⣄⣠⣯⣷⣿⣟⠀
+{{--
 
+SITIO DE PRUEBA SIGMA PARA PROBAR COSAS 
 
+--}}
 
--->
+{{-- SITIO DE PRUEBA SIGMA PARA PROBAR COSAS --}}
+
 @include('includes.header')
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>SkinChase</title>
-    <script src="{{ asset('js/products.js') }}"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-
 </head>
-<body class="bg-gray-900 text-white">
+<body class="bg-gray-900 text-white min-h-screen">
 
     <div id="product-container" class="grid grid-cols-2 md:grid-cols-4 gap-4 p-4"></div>
 
-<script>
-    // 👇 STEP 4: JS function to load products
-    function loadProducts(products) {
-        const productContainer = document.getElementById('product-container');
-        if (!productContainer) return;
+    <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+        const container = document.getElementById("product-container");
 
-        productContainer.innerHTML = '';
+        try {
+            const response = await fetch("/items");
+            const items = await response.json();
 
-        products.forEach(product => {
-            const item = product.item;
-            if (!item || !item.asset_id || !product.price) return;
+            items.forEach(item => {
+                const card = document.createElement("div");
+                card.className = "bg-gray-800 p-4 rounded-lg shadow hover:shadow-lg transition flex flex-col justify-between";
 
-            const productElement = document.createElement('div');
-            productElement.classList.add('bg-gray-800', 'p-4', 'rounded', 'shadow');
+                card.innerHTML = `
+                    <img src="https://steamcommunity-a.akamaihd.net/economy/image/${item.icon_url}" alt="${item.name}" class="w-full h-32 object-contain mb-2 rounded">
+                    <h2 class="text-lg font-semibold">${item.name}</h2>
+                    <p class="text-sm text-gray-400">Float: ${item.float_value}</p>
+                    <p class="text-green-400 font-bold mt-1">$${item.price}</p>
+                    <button class="mt-3 bg-blue-600 hover:bg-blue-700 text-white py-1 px-3 rounded w-full transition">Comprar</button>
+                `;
 
-            productElement.innerHTML = `
-                <h3 class="text-xs font-semibold mt-2">${item.market_hash_name}</h3>
-                <img src="https://steamcommunity-a.akamaihd.net/economy/image/${item.icon_url}" alt="Skin Image">
-                <p>Price: <span class="font-bold">${(product.price / 100).toFixed(2)} EUR</span></p>
-                <p class="text-gray-400">Float Value: ${parseFloat(item.float_value).toFixed(5)}</p>
-                <button class="buy-now mt-2 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
-                    data-id="${item.asset_id}"
-                    data-name="${item.market_hash_name}"
-                    data-price="${(product.price / 100).toFixed(2)}"
-                    data-image="${item.icon_url}">
-                    Buy Now
-                </button>
-            `;
-
-            productContainer.appendChild(productElement);
-        });
-    }
-
-    // 👇 STEP 5: Fetch products from your API
-    fetch('/api/products') // adjust this URL to your actual endpoint
-        .then(res => res.json())
-        .then(data => loadProducts(data));
-
-    // 👇 STEP 6: Handle Buy Now click and create Stripe Link
-    document.addEventListener('click', function (e) {
-        if (e.target.classList.contains('buy-now')) {
-            const btn = e.target;
-            const productData = {
-                id: btn.dataset.id,
-                name: btn.dataset.name,
-                price: btn.dataset.price,
-                image: btn.dataset.image
-            };
-
-            fetch('/create-stripe-link', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                },
-                body: JSON.stringify(productData)
-            })
-            .then(res => res.json())
-            .then(data => {
-                if (data.url) {
-                    window.location.href = data.url;
-                } else {
-                    alert("Payment link failed.");
-                }
+                container.appendChild(card);
             });
+        } catch (err) {
+            console.error("Error al cargar los items:", err);
+            container.innerHTML = "<p class='col-span-full text-center text-red-500'>No se pudieron cargar los productos.</p>";
         }
     });
     </script>
+
 </body>
 </html>
 
