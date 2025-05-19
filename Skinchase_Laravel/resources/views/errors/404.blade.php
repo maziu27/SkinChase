@@ -3,7 +3,7 @@
 @section('content')
 <div class="relative flex items-center justify-center min-h-screen bg-gray-900 text-white px-4 overflow-hidden">
 
-    {{-- Background collage of CS:GO skins --}}
+    <!-- easter egg??? wow!!! -->
     <div class="absolute inset-0 z-0 pointer-events-none opacity-70">
         @for ($i = 0; $i < 50; $i++)
             <img src="{{ asset('images/skins/skin' . ($i % 6 + 1) . '.png') }}"
@@ -19,7 +19,6 @@
         @endfor
     </div>
 
-    {{-- Foreground content --}}
     <div class="text-center z-10">
         <h1 class="text-3xl font-bold mb-6">This is not available at the moment gang... </h1>
         <a href="{{ route('home') }}"

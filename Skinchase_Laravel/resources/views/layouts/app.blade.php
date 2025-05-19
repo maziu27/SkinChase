@@ -17,3 +17,10 @@
         @include('includes.footer')
     </footer>
 </body>
+{{--<script>
+  AOS.init({
+    duration: 1000, // duración en milisegundos
+    once: false,    // si es true, solo se anima una vez
+  });--}}
+</script>
+</html>

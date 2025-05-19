@@ -1,5 +1,16 @@
-<div>
-    <p>WORK IN PROGRESS COPYRIGHT MATTHEW FARRELL 2025</p>
-        <a href="#" class="text-blue-400 hover:text-blue-600">Steam</a>
-        <a href="#" class="ml-4 text-blue-400 hover:text-blue-600">Twitter</a>
-</div>
+<footer class="mt-auto text-white py-6 px-4">
+    <div class="flex flex-col items-center sm: space-y-2">
+        <p class="text-sm text-center md:text-left">
+            SKINCHASE - COPYRIGHT SKINCHASE 2025
+        </p>
+        <div class="flex space-x-4">
+            <a href="#" class="text-xs md:text-sm text-white underline">
+                Aviso Legal
+            </a>
+            <a href="https://www.linkedin.com/in/matthew-farrell-927307209/" target="_blank"
+                class="text-xs md:text-sm text-white underline">
+                Realizado por Matthew Farrell Rovira
+            </a>
+        </div>
+    </div>
+</footer>

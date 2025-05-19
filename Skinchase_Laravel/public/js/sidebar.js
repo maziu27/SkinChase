@@ -4,9 +4,10 @@ function toggleSidebar() {
 
     if (sidebar.style.display === 'none') {
         sidebar.style.display = 'block';
-        mainContent.style.marginLeft = '250px'; // Adjust this value based on your sidebar width
+        mainContent.style.marginLeft = '250px'; // Valor no fijo, ajusta segun vaya la elegancia
     } else {
         sidebar.style.display = 'none';
+       
         mainContent.style.marginLeft = '0';
     }
 }

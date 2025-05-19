@@ -13,6 +13,17 @@ return new class extends Migration
     {
         Schema::create('trades', function (Blueprint $table) {
             $table->id();
+
+            $table->string('trade_id')->unique();
+            
+            //relacionarlo con la tabla users
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->string('user_name');
+
+            //relacionarlo con la tabla items
+            $table->foreignId('item_id')->constrained()->onDelete('cascade');
+            $table->string('item_name');
+
             $table->timestamps();
         });
     }
