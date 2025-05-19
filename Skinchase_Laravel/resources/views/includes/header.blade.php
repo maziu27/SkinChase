@@ -70,7 +70,8 @@
                 <li class="flex items-center px-4 py-2 hover:bg-red-700 cursor-pointer text-red-500 border-t border-gray-700">
                     <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" stroke-width="2"
                         viewBox="0 0 24 24"><path d="M17 16l4-4m0 0l-4-4m4 4H7"/></svg>
-                    Logout
+                    <a href="{{ route('logout') }}" class="text-red-500">Logout</a>
+                    
                 </li>
             </ul>
         </div>
