@@ -42,7 +42,7 @@ class MarketController extends Controller
                 continue;
             }
 
-            // Guardar o actualizar en la base de datos
+            // Esto mete las skins en la tabla items mySQL
             Item::updateOrCreate(
                 ['asset_id' => $item['asset_id']],
                 [

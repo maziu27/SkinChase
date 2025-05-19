@@ -15,9 +15,16 @@ class mySQLController extends Controller
 
 
     // para devolver JSON
-    public function getItemsJson()
-    {
-        return response()->json(Item::all());
+    public function getItemsJson(Request $request){
+        $query = Item::query();
+
+    // Filtro por nombre si se proporciona
+    if ($request->filled('name')) {
+        $query->where('name', 'like', '%' . $request->name . '%');
+    }
+
+    return response()->json($query->get());
+        //return response()->json(Item::all());
     }
     
 }
