@@ -99,101 +99,103 @@
 
                 <!-- Contenedor de productos -->
                 <div id="product-container"
-                    class="flex-1 grid gap-4 xl:grid-cols-6 lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2"></div>
+                    class="flex-1 grid gap-4 xl:grid-cols-6 lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-3 grid-cols-2"></div>
             </div>
         </main>
 
     </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const form = document.getElementById("filter-form");
-            const container = document.getElementById("product-container");
+    document.addEventListener("DOMContentLoaded", () => {
+        const form = document.getElementById("filter-form");
+        const container = document.getElementById("product-container");
 
-            async function fetchItems(params = "") {
-                container.innerHTML = "<p class='col-span-full text-center text-gray-400'>Loading...</p>";
+        async function fetchItems(params = "") {
+            container.innerHTML = "<p class='col-span-full text-center text-gray-400'>Loading...</p>";
 
-                try {
-                    const response = await fetch(`/items?${params}`);
-                    const items = await response.json();
+            try {
+                const response = await fetch(`/items?${params}`);
+                const items = await response.json();
 
-                    container.innerHTML = "";
+                container.innerHTML = "";
 
-                    if (items.length === 0) {
-                        container.innerHTML = "<p class='col-span-full text-center text-yellow-400'>No se encontraron resultados.</p>";
-                        return;
-                    }
+                if (items.length === 0) {
+                    container.innerHTML = "<p class='col-span-full text-center text-yellow-400'>No se encontraron resultados.</p>";
+                    return;
+                }
 
-                    items.forEach(item => {
-                        const card = document.createElement("div");
-                        card.className = "bg-gray-800 p-4 rounded-lg shadow hover:shadow-lg transition flex flex-col justify-between";
+                items.forEach(item => {
+                    const card = document.createElement("div");
+                    card.className = "bg-gray-800 p-4 rounded-lg shadow hover:shadow-lg transition flex flex-col justify-between";
 
-                        card.innerHTML = `
-                            <img src="https://steamcommunity-a.akamaihd.net/economy/image/${item.icon_url}" alt="${item.name}" class="w-full h-32 object-contain mb-2 rounded">
-                            <h2 class="text-lg font-semibold">${item.name}</h2>
-                            <p class="text-sm text-gray-400">Float: ${item.float_value}</p>
-                            <p class="text-green-400 font-bold mt-1">$${item.price}</p>
-                            <button class="mt-3 bg-blue-600 hover:bg-blue-700 text-white py-1 px-3 rounded w-full transition">Comprar</button>
-                        `;
+                    card.innerHTML = `
+                        <img src="https://steamcommunity-a.akamaihd.net/economy/image/${item.icon_url}" alt="${item.name}" class="w-full h-32 object-contain mb-2 rounded">
+                        <h2 class="text-lg font-semibold">${item.name}</h2>
+                        <p class="text-sm text-gray-400">
+                            ${item.float_value != null ? `Float: ${item.float_value}` : `Sticker`}
+                        </p>
+                        <p class="text-green-400 font-bold mt-1">$${item.price}</p>
+                        <button class="mt-3 bg-blue-600 hover:bg-blue-700 text-white py-1 px-3 rounded w-full transition">Comprar</button>
+                    `;
 
-                        container.appendChild(card);
-                    });
-                } catch (err) {
-                    console.error("Error al cargar los items:", err);
-                    container.innerHTML = "<p class='col-span-full text-center text-red-500'>Error al cargar los productos.</p>";
+                    container.appendChild(card);
+                });
+            } catch (err) {
+                console.error("Error al cargar los items:", err);
+                container.innerHTML = "<p class='col-span-full text-center text-red-500'>Error al cargar los productos.</p>";
+            }
+        }
+
+        // Enviar filtros
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const formData = new FormData(form);
+            const params = new URLSearchParams();
+
+            for (const [key, value] of formData.entries()) {
+                if (value.trim() !== "") {
+                    params.append(key, value);
                 }
             }
 
-            // Enviar filtros
-            form.addEventListener("submit", (e) => {
-                e.preventDefault();
-                const formData = new FormData(form);
-                const params = new URLSearchParams();
-
-                for (const [key, value] of formData.entries()) {
-                    if (value.trim() !== "") {
-                        params.append(key, value);
-                    }
-                }
-
-                fetchItems(params.toString());
-            });
-
-            // Carga inicial
-            fetchItems();
+            fetchItems(params.toString());
         });
 
-        // Ordenamiento
-        const sortToggle = document.getElementById("sort-toggle");
-        const sortOptions = document.getElementById("sort-options");
-        const sortByInput = document.getElementById("sort-by");
-        const form = document.getElementById("filter-form");
+        // Carga inicial
+        fetchItems();
+    });
 
-        sortToggle.addEventListener("click", () => {
-            sortOptions.classList.toggle("hidden");
+    // Ordenamiento
+    const sortToggle = document.getElementById("sort-toggle");
+    const sortOptions = document.getElementById("sort-options");
+    const sortByInput = document.getElementById("sort-by");
+    const form = document.getElementById("filter-form");
+
+    sortToggle.addEventListener("click", () => {
+        sortOptions.classList.toggle("hidden");
+    });
+
+    sortOptions.querySelectorAll("li").forEach(option => {
+        option.addEventListener("click", () => {
+            const value = option.getAttribute("data-value");
+            sortByInput.value = value;
+
+            sortToggle.innerHTML = `${option.textContent}
+                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>`;
+
+            sortOptions.classList.add("hidden");
+            form.dispatchEvent(new Event('submit'));
         });
+    });
 
-        sortOptions.querySelectorAll("li").forEach(option => {
-            option.addEventListener("click", () => {
-                const value = option.getAttribute("data-value");
-                sortByInput.value = value;
-
-                sortToggle.innerHTML = `${option.textContent}
-                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                    </svg>`;
-
-                sortOptions.classList.add("hidden");
-                form.dispatchEvent(new Event('submit'));
-            });
-        });
-
-        // Mostrar/ocultar sidebar en pantallas pequeñas
-        function toggleSidebar() {
-            const sidebar = document.getElementById("sidebar");
-            sidebar.classList.toggle("hidden");
-        }
-    </script>
+    // Mostrar/ocultar sidebar en pantallas pequeñas
+    function toggleSidebar() {
+        const sidebar = document.getElementById("sidebar");
+        sidebar.classList.toggle("hidden");
+    }
+</script>
 
 @endsection
 {{--@section('content')
