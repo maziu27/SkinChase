@@ -2,11 +2,31 @@
     <!-- Logo + Nav -->
     <div class="flex items-center space-x-6">
         <a href="{{ route('home') }}" class="text-purple-400 hover:text-[#0095d9] font-bold text-xl">SkinChase</a>
-        <nav class="hidden md:flex space-x-4">
-            <a href="{{ route('market') }}" class="text-purple-400 hover:text-[#0095d9] font-bold text-xl">Market</a>
-            <a href="#" class="text-purple-400 hover:text-[#0095d9] font-bold text-xl">Tools</a>
-            <a href="#" class="text-purple-400 hover:text-[#0095d9] font-bold text-xl">App</a>
-            <a href="{{ route('test') }}" class="text-purple-400 hover:text-[#0095d9] font-bold text-xl">TESTING</a>
+        <nav class="hidden md:flex space-x-6">
+            <a href="{{ route('market') }}" class="flex items-center gap-2 text-purple-400 hover:text-[#0095d9] font-bold text-xl">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9l1-4h16l1 4M4 9h16v10a1 1 0 01-1 1h-3a1 1 0 01-1-1v-4H9v4a1 1 0 01-1 1H5a1 1 0 01-1-1V9z"/>
+                </svg>
+                Market
+            </a>
+            <a href="#" class="flex items-center gap-2 text-purple-400 hover:text-[#0095d9] font-bold text-xl">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M12 6a6 6 0 110 12 6 6 0 010-12z"/>
+                </svg>
+                Tools
+            </a>
+            <a href="#" class="flex items-center gap-2 text-purple-400 hover:text-[#0095d9] font-bold text-xl">
+               {{--<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>--}}
+                App
+            </a>
+            <a href="{{ route('test') }}" class="flex items-center gap-2 text-purple-400 hover:text-[#0095d9] font-bold text-xl">
+               {{--<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16"/>
+                </svg>--}} 
+                TESTING
+            </a>
         </nav>
     </div>
 
@@ -26,6 +46,12 @@
                         viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 00-8 0v2"/><circle cx="12" cy="7" r="4"/></svg>
                     <a href="{{ route('redirect') }}" class="text-white">Profile</a>
                 </li>
+                <li class="flex items-center px-4 py-2 hover:bg-gray-700 cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9l1-4h16l1 4M4 9h16v10a1 1 0 01-1 1h-3a1 1 0 01-1-1v-4H9v4a1 1 0 01-1 1H5a1 1 0 01-1-1V9z"/>
+                    </svg>
+                    <a href="{{ route('market') }}" class="text-white">Market</a>
+                </li>
                 <li class="flex items-center px-4 py-2 hover:bg-gray-700 cursor-pointer text-green-400">
                     <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" stroke-width="2"
                         viewBox="0 0 24 24"><path d="M12 19V6m0 0l-6 6m6-6l6 6"/></svg>
@@ -35,7 +61,6 @@
                     <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" stroke-width="2"
                         viewBox="0 0 24 24"><path d="M12 5v13m0 0l6-6m-6 6l-6-6"/></svg>
                     <a href="#">Withdraw</a>
-
                 </li>
                 <li class="flex items-center px-4 py-2 hover:bg-gray-700 cursor-pointer text-orange-400">
                     <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" stroke-width="2"
@@ -71,19 +96,18 @@
                     <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" stroke-width="2"
                         viewBox="0 0 24 24"><path d="M17 16l4-4m0 0l-4-4m4 4H7"/></svg>
                     <a href="{{ route('logout') }}" class="text-red-500">Logout</a>
-                    
                 </li>
             </ul>
         </div>
     </div>
 </header>
-{{-- Scripts para el dropdown del perfil --}}
+
+<!-- Script para el dropdown -->
 <script>
     const profileBtn = document.getElementById('profile-button');
     const dropdown = document.getElementById('profile-dropdown');
     const wrapper = document.getElementById('dropdown-wrapper');
 
-    // Toggle con animación
     profileBtn.addEventListener('click', function (e) {
         e.stopPropagation();
         dropdown.classList.toggle('pointer-events-none');
@@ -91,7 +115,6 @@
         dropdown.classList.toggle('scale-95');
     });
 
-    // Ocultar al hacer clic fuera
     document.addEventListener('click', function (event) {
         if (!wrapper.contains(event.target)) {
             dropdown.classList.add('pointer-events-none', 'opacity-0', 'scale-95');
