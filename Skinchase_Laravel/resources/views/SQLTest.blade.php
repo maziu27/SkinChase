@@ -80,7 +80,7 @@
                     class="w-full p-2 rounded bg-gray-700 border border-gray-600">
             </div>
 
-            <!-- 👇 input oculto dentro del formulario -->
+            <!-- input oculto dentro del formulario -->
             <input type="hidden" name="sort_by" id="sort-by">
 
             <input type="submit" value="Filtrar"
