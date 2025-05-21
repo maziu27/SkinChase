@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // 3. Cerrar el sidebar al hacer clic en la "X"
+    /*
     const closeSidebar = document.getElementById("close-basket");
     if (closeSidebar) {
         closeSidebar.addEventListener("click", () => {
@@ -31,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
             sidebar.classList.add("translate-x-full");
         });
     }
-
+    */
     // 4. Botón para vaciar completamente el carrito
     const clearBasketButton = document.getElementById("clear-basket");
     if (clearBasketButton) {
@@ -46,6 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // Función para mostrar los productos en la UI
+
 function loadProducts(products) {
     const productContainer = document.getElementById("product-container");
     if (!productContainer) return;
