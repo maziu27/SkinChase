@@ -31,10 +31,10 @@ document.addEventListener("DOMContentLoaded", function()  {
 
             items.forEach(item => {
                 const card = document.createElement("div");
-                card.className = "bg-[#1A1D24] h-[428px] rounded-xl overflow-hidden shadow-md text-white p-4 flex flex-col gap-2 transition hover:shadow-lg";
+                card.className = "bg-[#1A1D24] h-[428px] rounded-xl overflow-hidden shadow-md text-white p-4 flex flex-col gap-2 transition hover:shadow-lg cursor-pointer";
             
                 card.innerHTML = `
-                    <div class="relative bg-gradient-to-b  from-purple-700 to-purple-900 rounded-lg p-2 flex justify-center items-center">
+                    <div class="relative bg-gradient-to-b from-purple-700 to-purple-900 rounded-lg p-2 flex justify-center items-center">
                         <img src="https://steamcommunity-a.akamaihd.net/economy/image/${item.icon_url}" 
                              alt="${item.name}" 
                              class="h-32 object-contain">
@@ -62,9 +62,12 @@ document.addEventListener("DOMContentLoaded", function()  {
                             data-price="${(item.price / 1).toFixed(2)}"
                             data-image="${item.icon_url}">Buy now</button>
                     </div>
-
-                    
                 `;
+            
+                // Agregar listener para abrir el modal
+                card.addEventListener("click", function() {
+                    openModal(item);
+                });
             
                 container.appendChild(card);
             });
@@ -72,8 +75,8 @@ document.addEventListener("DOMContentLoaded", function()  {
             console.error("Error loading items:", err);
             container.innerHTML = "<p class='col-span-full text-center text-red-500'>Error loading items.</p>";
         }
+        
     }
-
 
     // Botón "Buy Now" → redirige a Stripe
     document.addEventListener("click", function (e) {
