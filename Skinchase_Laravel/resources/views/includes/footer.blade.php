@@ -4,8 +4,8 @@
             SKINCHASE - COPYRIGHT SKINCHASE 2025
         </p>
         <div class="flex space-x-4">
-            <a href="#" class="text-xs md:text-sm text-white underline">
-                Aviso Legal
+            <a href="{{route('legal')}}" class="text-xs md:text-sm text-white underline">
+                Legal notice
             </a>
             <a href="https://www.linkedin.com/in/matthew-farrell-927307209/" target="_blank"
                 class="text-xs md:text-sm text-white underline">
@@ -13,4 +13,4 @@
             </a>
         </div>
     </div>
-</footer>
+</footer> 

@@ -67,4 +67,28 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
         return redirect('/');
     }
+
+    public function updateProfile(Request $request)
+{
+    $user = Auth::user(); // Esto debe devolver un modelo User
+
+    if (!$user instanceof \App\Models\User) {
+        abort(403, 'Unauthorized action.');
+    }
+
+    $request->validate([
+        'email' => 'required|email|unique:users,email,' . $user->id,
+        'password' => 'nullable|min:6|confirmed',
+    ]);
+
+    $user->email = $request->email;
+
+    if ($request->filled('password')) {
+        $user->password = Hash::make($request->password);
+    }
+
+    $user->save();
+
+    return back()->with('success', 'Profile updated successfully.');
+}
 }
