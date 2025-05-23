@@ -5,6 +5,7 @@ Controlador para autenticación de usuarios, incluyendo registro, inicio de sesi
 
 
 */
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -69,26 +70,33 @@ class AuthController extends Controller
     }
 
     public function updateProfile(Request $request)
-{
-    $user = Auth::user(); // Esto debe devolver un modelo User
+    {
+        $user = Auth::user();
 
-    if (!$user instanceof \App\Models\User) {
-        abort(403, 'Unauthorized action.');
+        if (!$user instanceof \App\Models\User) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        $request->validate([
+            'email' => 'required|email|unique:users,email,' . $user->id,
+            'password' => 'nullable|min:6|confirmed',
+            'profile_picture' => 'nullable|image|max:2048', // Validación para imagen (2MB máx.)
+        ]);
+
+        $user->email = $request->email;
+
+        if ($request->filled('password')) {
+            $user->password = Hash::make($request->password);
+        }
+
+        if ($request->hasFile('profile_picture')) {
+            // Guarda la imagen en storage/app/public/profile_pictures
+            $path = $request->file('profile_picture')->store('profile_pictures', 'public');
+            $user->profile_picture = $path;
+        }
+
+        $user->save();
+
+        return back()->with('success', 'Profile updated successfully.');
     }
-
-    $request->validate([
-        'email' => 'required|email|unique:users,email,' . $user->id,
-        'password' => 'nullable|min:6|confirmed',
-    ]);
-
-    $user->email = $request->email;
-
-    if ($request->filled('password')) {
-        $user->password = Hash::make($request->password);
-    }
-
-    $user->save();
-
-    return back()->with('success', 'Profile updated successfully.');
-}
 }
