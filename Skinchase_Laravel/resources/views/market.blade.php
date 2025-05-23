@@ -19,7 +19,7 @@
             <div class="relative w-52"> <!-- Aumentado el ancho de w-40 a w-52 -->
                 <button type="button" id="sort-toggle"
                     class="bg-purple-500 rounded-xl px-4 py-2 text-white text-2xl focus:outline-none flex items-center justify-between w-full h-full">
-                    Ordenar por
+                    Order by
                     <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                     </svg>
@@ -100,67 +100,68 @@
             <!-- Contenedor de productos -->
             <div id="contenedor-productos"
                 class="flex-1 grid gap-4 xl:grid-cols-6 lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-3 grid-cols-2 overflow-hidden">
+            </div>
+        </div>
+
+        <div id="product-modal" class="fixed inset-0 z-50 bg-black bg-opacity-70 hidden justify-center items-center"
+            onclick="closeModalOnBackdrop(event)">
+            <div class="bg-[#1A1D24] rounded-xl p-8 w-[95%] max-w-5xl text-white flex flex-col items-center relative"
+                onclick="event.stopPropagation()">
+                <!-- Título y detalles -->
+                <div class="text-center mb-6">
+                    <h3 class="text-2xl font-bold" id="modal-name">Nombre del producto</h3>
+                    <p id="modal-float" class="text-gray-300 mt-1">Float: 0.0000</p>
+                    <p id="modal-price" class="text-green-400 font-bold text-xl mt-1">€0.00</p>
                 </div>
-            </div>
 
-            <div id="product-modal" class="fixed inset-0 z-50 bg-black bg-opacity-70 hidden justify-center items-center">
-    <div class="bg-[#1A1D24] rounded-xl p-6 w-[90%] max-w-6xl text-white grid grid-cols-1 md:grid-cols-3 gap-6">
-        <!-- Información adicional -->
-        <div>
-            <h3 class="text-lg font-bold mb-2" id="modal-name">Nombre del producto</h3>
-            <p id="modal-float" class="text-gray-300">Float: 0.0000</p>
-            <p id="modal-price" class="text-green-400 font-bold mt-2">€0.00</p>
-            
+                <!-- Imagen -->
+                <img id="modal-image" src="" alt="Product" class="w-96 h-96 object-contain mb-6">
+
+                <!-- Botones -->
+                <div class="flex gap-4">
+                    <button class="bg-blue-600 hover:bg-blue-700 px-5 py-3 rounded">Add to Cart</button>
+                    <button class="bg-green-600 hover:bg-green-700 px-5 py-3 rounded">Buy Now</button>
+                </div>
+
+                <!-- Botón cerrar -->
+                <button onclick="closeModal()" class="mt-6 bg-red-500 hover:bg-red-600 px-4 py-2 rounded text-white">
+                    Close
+                </button>
+            </div>
         </div>
-
-        <!-- Imagen -->
-        <div class="flex flex-col items-center justify-center">
-            <img id="modal-image" src="" alt="Product" class="w-48 h-48 object-contain mb-4">
-            <div class="flex gap-4">
-                <button class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded">Add to Cart</button>
-                <button class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded">Buy Now</button>
-            </div>
-
-            <button onclick="closeModal()" class="mt-4 bg-red-500 hover:bg-red-600 px-4 py-2 rounded text-white">
-                Cerrar
-            </button>
         </div>
-
-        <!-- Similares -->
-        {{--<div>
-            <h4 class="font-semibold mb-2">Similares</h4>
-            <div id="similar-products" class="space-y-2 text-sm text-gray-300">
-                <p>No hay similares.</p>
-            </div>
-        </div>--}}
-    </div>
-</div>
     </main>
 
     </div>
 
     <script src="{{ asset('js/market.js') }}"></script>
 
-<script>
-function openModal(item) {
-    document.getElementById('modal-name').innerText = item.name;
-    document.getElementById('modal-float').innerText = item.float_value ? 'Float: ' + item.float_value : 'Sticker';
-    document.getElementById('modal-price').innerText = '€' + Number(item.price).toFixed(2);
-    document.getElementById('modal-image').src = `https://steamcommunity-a.akamaihd.net/economy/image/${item.icon_url}`;
+    <script>
+        function openModal(item) {
+            document.getElementById('modal-name').innerText = item.name;
+            document.getElementById('modal-float').innerText = item.float_value ? 'Float: ' + item.float_value : 'Sticker';
+            document.getElementById('modal-price').innerText = '€' + Number(item.price).toFixed(2);
+            document.getElementById('modal-image').src = `https://steamcommunity-a.akamaihd.net/economy/image/${item.icon_url}`;
 
-    // Mostrar modal
-    const modal = document.getElementById('product-modal');
-    modal.classList.remove('hidden');
-    modal.classList.add('flex');
+            // Mostrar modal
+            const modal = document.getElementById('product-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
 
-    // Lógica para mostrar similares, si los tienes
-    document.getElementById('similar-products').innerHTML = `<p>No hay similares.</p>`;
-}
+            // Lógica para mostrar similares, si los tienes
+            document.getElementById('similar-products').innerHTML = `<p>No hay similares.</p>`;
+        }
 
-function closeModal() {
-    const modal = document.getElementById('product-modal');
-    modal.classList.add('hidden');
-    modal.classList.remove('flex');
-}
-</script>
+        function closeModal() {
+            const modal = document.getElementById('product-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function closeModalOnBackdrop(event) {
+            if (event.target.id === 'product-modal') {
+                closeModal();
+            }
+        }
+    </script>
 @endsection
