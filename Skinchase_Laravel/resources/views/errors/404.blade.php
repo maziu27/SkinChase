@@ -23,7 +23,7 @@
         <h1 class="text-3xl font-bold mb-6">This is not available at the moment gang... </h1>
         <a href="{{ route('home') }}"
            class="inline-block bg-violet-600 hover:bg-violet-700 text-white font-semibold py-2 px-4 rounded transition">
-            Go back! :0
+            Go back!
         </a>
         <img class="mx-auto max-w-xs mt-6 rounded shadow-lg" src="{{ asset('images/404.png') }}" alt="Not available emoji">
     </div>
