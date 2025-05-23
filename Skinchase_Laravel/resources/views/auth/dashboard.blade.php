@@ -2,6 +2,7 @@
 @section('content')
     <h1 class="text-center m-4 text-3xl text-purple-500">Welcome to SkinChase, {{ Auth::user()->name }}</h1>
 
+    
     <form method="POST" action="{{ route('logout') }}">
         @csrf
             <div class="mx-auto text-center items-center">

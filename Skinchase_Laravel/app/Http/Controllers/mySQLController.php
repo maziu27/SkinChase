@@ -12,7 +12,7 @@ class mySQLController extends Controller
     public function index()
     {
         $items = Item::all();
-        return view('SQLTest', ['items' => $items]);
+        return view('market', ['items' => $items]);
     }
 
 

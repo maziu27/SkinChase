@@ -1,4 +1,5 @@
 // Esperar a que el DOM esté completamente cargado
+/*
 document.addEventListener("DOMContentLoaded", function () {
     // 1. Cargar productos desde la API al iniciar la página
     fetch("/api/fetch-data")
@@ -11,6 +12,8 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
 
+
+    
     // 2. Abrir el sidebar del carrito al hacer clic en el icono
     const basketToggle = document.getElementById("basket-toggle");
     if (basketToggle) {
@@ -23,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // 3. Cerrar el sidebar al hacer clic en la "X"
-    /*
+    
     const closeSidebar = document.getElementById("close-basket");
     if (closeSidebar) {
         closeSidebar.addEventListener("click", () => {
@@ -32,8 +35,9 @@ document.addEventListener("DOMContentLoaded", function () {
             sidebar.classList.add("translate-x-full");
         });
     }
-    */
+    
     // 4. Botón para vaciar completamente el carrito
+    
     const clearBasketButton = document.getElementById("clear-basket");
     if (clearBasketButton) {
         clearBasketButton.addEventListener("click", () => {
@@ -105,6 +109,7 @@ function loadProducts(products) {
     // EVENTOS DE LOS BOTONES
 
     // Botón "Buy Now" → redirige a Stripe
+    
     document.addEventListener("click", function (e) {
         if (e.target.classList.contains("buy-now")) {
             const btn = e.target;
@@ -152,6 +157,7 @@ function loadProducts(products) {
         });
     });
 }
+
 
 // Añadir producto al carrito si no está repetido
 function addToBasket(product) {
@@ -236,3 +242,4 @@ function removeFromBasket(id) {
     updateBasketCount(); // Actualizar contador
     renderBasketItems(); // Refrescar vista del sidebar
 }
+*/

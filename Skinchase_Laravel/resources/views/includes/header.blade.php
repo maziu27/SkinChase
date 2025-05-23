@@ -9,24 +9,26 @@
                 </svg>
                 Market
             </a>
+            {{--
             <a href="#" class="flex items-center gap-2 text-purple-400 hover:text-[#0095d9] font-bold text-xl">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M12 6a6 6 0 110 12 6 6 0 010-12z"/>
                 </svg>
                 Tools
-            </a>
+            </a>--}}
+            {{--
             <a href="#" class="flex items-center gap-2 text-purple-400 hover:text-[#0095d9] font-bold text-xl">
                {{--<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                </svg>--}}
+                </svg>
                 App
             </a>
             <a href="{{ route('test') }}" class="flex items-center gap-2 text-purple-400 hover:text-[#0095d9] font-bold text-xl">
                {{--<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16"/>
-                </svg>--}} 
+                </svg>
                 TESTING
-            </a>
+            </a>--}}
         </nav>
     </div>
 
@@ -34,7 +36,8 @@
     <div class="relative" id="dropdown-wrapper">
         <button id="profile-button" class="focus:outline-none">
             <img src="https://avatars.fastly.steamstatic.com/1792a5b9ef50f593698f3a5e6a9dad56c86b3b23_full.jpg"
-                class="w-10 h-10 rounded-md">
+                class="w-10 h-10 rounded-md"> 
+
         </button>
 
         <!-- Dropdown Menu -->
@@ -92,10 +95,17 @@
                         viewBox="0 0 24 24"><path d="M17 8h2a2 2 0 012 2v10a2 2 0 01-2 2h-2M7 8h10M7 8H5a2 2 0 00-2 2v10a2 2 0 002 2h2"/></svg>
                     Support
                 </li>
+                
                 <li class="flex items-center px-4 py-2 hover:bg-red-700 cursor-pointer text-red-500 border-t border-gray-700">
                     <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" stroke-width="2"
                         viewBox="0 0 24 24"><path d="M17 16l4-4m0 0l-4-4m4 4H7"/></svg>
-                    <a href="{{ route('logout') }}" class="text-red-500">Logout</a>
+                    <form method="POST" action="{{ route('logout') }}" class="text-red-500">
+                        @csrf
+                        <button type="submit">
+                            Logout
+                        </button>
+                        
+                    </form>
                 </li>
             </ul>
         </div>
