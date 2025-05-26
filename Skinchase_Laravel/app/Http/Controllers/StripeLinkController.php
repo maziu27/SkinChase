@@ -22,7 +22,7 @@ class StripeLinkController extends Controller
 
         // Guardar el ID del item en la sesión de Laravel
         LaravelSession::put('item_id', $itemId);
-
+        
         try {
             // Crear una nueva sesión de checkout con Stripe
             $checkoutSession = Session::create([

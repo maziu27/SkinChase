@@ -13,11 +13,13 @@ class Trade extends Model
         'item_name',
     ];
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function item(){
-        return $this->belongsTo(Item::class);
+    public function items()
+    {
+        return $this->hasMany(Item::class);
     }
 }

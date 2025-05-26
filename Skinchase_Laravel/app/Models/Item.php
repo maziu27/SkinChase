@@ -13,4 +13,9 @@ class Item extends Model
         'price',
         'float_value',
     ];
+
+    public function trade()
+{
+    return $this->belongsTo(Trade::class);
+}
 }

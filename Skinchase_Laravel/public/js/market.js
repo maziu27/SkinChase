@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function()  {
         .then((responseData) => {
             // Validar que la respuesta contenga datos válidos
             if (responseData.data && Array.isArray(responseData.data)) {
-                loadProducts(responseData.data); // Mostrar los productos en la interfaz
+                //loadProducts(responseData.data); // Mostrar los productos en la interfaz
                 updateBasketCount(); // Actualizar el contador de productos en la cesta
             }
         });

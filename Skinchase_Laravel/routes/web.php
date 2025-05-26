@@ -30,8 +30,12 @@ Route::get('/legal', function(){
 Route::post('/create-stripe-link', [StripeLinkController::class, 'create']);
 
 //rutas para redireccionamiento de pago
-Route::view('/payment-success', 'checkout-success');
+//Route::view('/payment-success', 'checkout-success');
+Route::get('/payment-success', [\App\Http\Controllers\PaymentController::class, 'success'])->name('payment.success');
+
 Route::view('/payment-cancel', 'checkout-cancel');
+
+
 
 //rutas para la pagina principal y el api para visualizar los productos
 Route::get('/market', [MarketController::class, 'index'])->name("market");
