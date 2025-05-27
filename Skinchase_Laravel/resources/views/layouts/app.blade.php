@@ -10,17 +10,12 @@
     </header>
     
     <!-- Web content -->
+    
     @yield('content')
-
+    </>
      <!-- Footer -->
-    <footer class="text-center text-gray-500 text-sm py-4">
+    <footer class="">
         @include('includes.footer')
     </footer>
 </body>
-{{--<script>
-  AOS.init({
-    duration: 1000, // duración en milisegundos
-    once: false,    // si es true, solo se anima una vez
-  });--}}
-</script>
 </html>

@@ -1,40 +1,26 @@
-<!--elementos de csfloat-->
 @extends('layouts.app')
-
 @section('content')
-{{-- <h1 class="text-center text-6xl"> Welcome to SkinChase </h1> --}}
 
-<img class="mx-auto" src="{{ asset(path: 'images/SkinChase_logo-removebg-preview.png') }}" alt="Logo de SkinChase">
-  
-  {{--<a class="text-center" href="{{ url('/auth/steam') }}">
-      <img src="https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_01.png" alt="Sign in through Steam">
-    </a>
-    --}}
-{{--
-    <div class="flex flex-col md:flex-row items-center gap-6 mb-20" data-aos="fade-right" data-aos-delay="100">
-                <img class="w-full md:w-1/2 h-48 object-cover rounded shadow-lg"
-                     src="{{ asset('images/skins/skin1.png') }}" alt="dlore">
-                <p class="text-white text-justify text-base md:text-lg max-w-lg px-2">
-                    hola hola hola
-                </p>
-            </div>
+    <div class="text-white text-center px-6 md:px-20 py-16 bg-[#0f0f1b]">
+        <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+            Revolutionize Your CS2 Trading Experience with SkinChase
+        </h1>
+        <p class="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto mb-10">
+            SkinChase provides the most advanced trading tools that power millions of skin sales. Buy CS2 skins with unparalleled ease and security.
+        </p>
+        <div class="flex justify-center gap-4">
+            <a href="{{ route('market') }}" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-3" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 9l1-4h16l1 4M4 9h16v10a1 1 0 01-1 1h-3a1 1 0 01-1-1v-4H9v4a1 1 0 01-1 1H5a1 1 0 01-1-1V9z" />
+                </svg>
+                Market
+            </a>
+        </div>
+            <img class="mx-auto mb-8" src="{{ asset('images/SkinChase_logo-removebg-preview.png') }}" alt="Logo de SkinChase">
 
-            <div class="flex flex-col md:flex-row-reverse items-center gap-6 mb-20" data-aos="fade-left" data-aos-delay="200">
-                <img class="w-full md:w-1/2 h-48 object-cover rounded shadow-lg"
-                     src="{{ asset('images/skins/skin1.png') }}" alt="dlore">
-                <p class="text-black text-justify text-base md:text-lg max-w-lg px-2">
-                    holaa holaa holaa
-                </p>
-            </div>
+    </div>
 
-            <div class="flex flex-col md:flex-row items-center gap-6 mb-20" data-aos="fade-right" data-aos-delay="100">
-                <img class="w-full md:w-1/2 h-48 object-cover rounded shadow-lg"
-                     src="{{ asset('images/skins/skin1.png') }}" alt="dlore">
-                <p class="text-white text-justify text-base md:text-lg max-w-lg px-2">
-                    hola hola hola
-                </p>
-            </div>
-      </div>
-      --}}
-@endsection()
 
+@endsection

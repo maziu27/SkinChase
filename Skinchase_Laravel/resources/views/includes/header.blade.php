@@ -12,33 +12,45 @@
                 </svg>
                 Market
             </a>
-            {{--
-            <a href="#" class="flex items-center gap-2 text-purple-400 hover:text-[#0095d9] font-bold text-xl">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M12 6a6 6 0 110 12 6 6 0 010-12z" />
-                </svg>
-                Tools
-            </a>--}}
-            {{--
-            <a href="#" class="flex items-center gap-2 text-purple-400 hover:text-[#0095d9] font-bold text-xl">
-                {{--<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                App
-            </a>
-            <a href="{{ route('test') }}"
-                class="flex items-center gap-2 text-purple-400 hover:text-[#0095d9] font-bold text-xl">
-                {{--<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16" />
-                </svg>
-                TESTING
-            </a>--}}
         </nav>
     </div>
+
+    <!-- Botón del carrito -->
+    <button id="basket-toggle" class="relative ml-4 text-purple-400 hover:text-[#0095d9]">
+        <!-- Icono del carrito -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2 9m12-9l2 9m-6-9v9" />
+        </svg>
+        <!-- Contador de productos -->
+        <span
+            class="basket-count absolute top-0 right-0 bg-red-600 text-white text-xs px-2 rounded-full hidden">0</span>
+    </button>
+
+    <!-- Sidebar de la Cesta -->
+<div id="basket-sidebar"
+    class="fixed top-0 right-0 w-80 h-full bg-[#1e1e1e] text-white shadow-lg transform translate-x-full transition-transform duration-300 z-50">
+    <div class="flex justify-between items-center p-4 border-b border-gray-700">
+        <h2 class="text-xl font-semibold">Shopping cart</h2>
+        <button id="close-basket" class="text-gray-400 hover:text-red-500 text-xl">&times;</button>
+    </div>
+    <div id="basket-items" class="p-4 space-y-4 overflow-y-auto max-h-[80vh]">
+        <!-- Aquí se listarán los productos -->
+    </div>
+    <div class="p-4 border-t border-gray-700">
+        <button id="clear-basket" class="w-full bg-red-600 hover:bg-red-700 text-white py-2 rounded">Empty cart</button>
+    </div>
+
+    <!-- checkout boton -->
+    <!-- checkout botón (pago múltiple) -->
+    <div class="p-4 border-t border-gray-700">
+        <button id="checkout-all"
+            class="w-full bg-lime-600 hover:bg-lime-900 text-white py-2 rounded">
+            Checkout
+        </button>
+    </div>
+</div>
+
 
     <!-- Dropdown Profile -->
     <div class="relative" id="dropdown-wrapper">
@@ -47,14 +59,12 @@
                 <img src="{{ asset('storage/' . Auth::user()->profile_picture) }}" class="w-10 h-10 rounded-md">
             @else
                 <svg width="40" height="40" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="32" cy="20" r="12" fill="#C4C4C4"/>
-  <path d="M16 52C16 43.1634 23.1634 36 32 36C40.8366 36 48 43.1634 48 52V56H16V52Z" fill="#C4C4C4"/>
-</svg>
+                    <circle cx="32" cy="20" r="12" fill="#C4C4C4" />
+                    <path d="M16 52C16 43.1634 23.1634 36 32 36C40.8366 36 48 43.1634 48 52V56H16V52Z" fill="#C4C4C4" />
+                </svg>
             @endif
         </button>
 
-        @include('includes.basket-side')
-        
         <!-- Dropdown Menu -->
         <div id="profile-dropdown"
             class="origin-top-right absolute right-0 mt-2 w-56 bg-gray-900 text-white rounded-md shadow-lg transform scale-95 opacity-0 transition-all duration-300 pointer-events-none z-50">
@@ -163,7 +173,7 @@
     });
 
 
-
+    //para ver quien esta logeado en la consola
     @auth
         console.log('{{ Auth::user()->name }} is logged in');
     @else

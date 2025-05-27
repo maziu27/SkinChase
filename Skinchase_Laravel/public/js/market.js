@@ -50,9 +50,9 @@ document.addEventListener("DOMContentLoaded", function()  {
                     </div>
             
                     <div class="flex gap-2 mt-auto">
-                        <button class="add-to-basket flex-1 bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded-md text-sm transition"
+                        <button class="js-add-to-basket flex-1 bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded-md text-sm transition"
                             data-id="${item.asset_id}"
-                            data-name="${item.market_hash_name}"
+                            data-name="${item.name}"
                             data-price="${(item.price / 1).toFixed(2)}"
                             data-image="${item.icon_url}">Add to basket</button>
             
@@ -65,7 +65,8 @@ document.addEventListener("DOMContentLoaded", function()  {
                 `;
             
                 // Agregar listener para abrir el modal
-                card.addEventListener("click", function() {
+                card.addEventListener("click", function (e) {
+                    if (e.target.closest("button")) return; // Evita que se abra el modal al hacer clic en botones
                     openModal(item);
                 });
             
@@ -172,108 +173,123 @@ Funciones carrito
 
 
 */
+document.addEventListener("DOMContentLoaded", () => {
+    const basketToggle = document.getElementById("basket-toggle");
+    const clearBasketButton = document.getElementById("clear-basket");
+    const closeBasket = document.getElementById("close-basket");
 
-const basketToggle = document.getElementById("basket-toggle");
     if (basketToggle) {
         basketToggle.addEventListener("click", () => {
             const sidebar = document.getElementById("basket-sidebar");
-            sidebar.classList.remove("translate-x-full"); // Mostrar sidebar (deslizar hacia adentro)
+            sidebar.classList.remove("translate-x-full");
             sidebar.classList.add("translate-x-0");
-            renderBasketItems(); // Mostrar productos actuales en el carrito
+            renderBasketItems();
         });
     }
 
-const clearBasketButton = document.getElementById("clear-basket");
+    if (closeBasket) {
+        closeBasket.addEventListener("click", () => {
+            const sidebar = document.getElementById("basket-sidebar");
+            sidebar.classList.remove("translate-x-0");
+            sidebar.classList.add("translate-x-full");
+        });
+    }
+
     if (clearBasketButton) {
         clearBasketButton.addEventListener("click", () => {
-            if (confirm("¿Seguro que quieres vaciar la cesta?")) {
-                localStorage.removeItem("basket"); // Eliminar el carrito del localStorage
-                updateBasketCount(); // Actualizar el contador del carrito
-                renderBasketItems(); // Actualizar la vista del sidebar del carrito
+            if (confirm("Do you really want to empty your basket?")) {
+                localStorage.removeItem("basket");
+                updateBasketCount();
+                renderBasketItems();
             }
         });
     }
 
-// Añadir producto al carrito si no está repetido
-function addToBasket(product) {
-    let basket = getBasket(); // Obtener carrito actual
-
-    // Verificar si ya está agregado
-    if (!basket.some((item) => item.id === product.id)) {
-        basket.push(product); // Agregar nuevo producto
-        localStorage.setItem("basket", JSON.stringify(basket)); // Guardar en localStorage
-        updateBasketCount(); // Actualizar contador visual
-    } else {
-        alert(`${product.name} is already in your basket.`); // Mensaje si ya existe
-    }
-}
-
-// Obtener productos del carrito desde localStorage
-function getBasket() {
-    return JSON.parse(localStorage.getItem("basket")) || [];
-}
-
-// Actualizar contador visual del icono del carrito
-function updateBasketCount() {
-    const basketToggle = document.getElementById("basket-toggle");
-    const basket = getBasket();
-    let count = basket.length;
-
-    // Buscar o crear el "badge" de cantidad
-    let countBadge = basketToggle.querySelector(".basket-count");
-    if (!countBadge) {
-        countBadge = document.createElement("span");
-        countBadge.className =
-            "basket-count absolute top-0 right-0 bg-red-600 text-white text-xs px-2 rounded-full";
-        basketToggle.appendChild(countBadge);
+    function addToBasket(product) {
+        let basket = getBasket();
+        if (!basket.some((item) => item.id === product.id)) {
+            basket.push(product);
+            localStorage.setItem("basket", JSON.stringify(basket));
+            updateBasketCount();
+        } else {
+            alert(`${product.name} is already in your basket.`);
+        }
     }
 
-    countBadge.textContent = count; // Actualizar número
-}
-
-// Mostrar productos actuales en el carrito (sidebar)
-function renderBasketItems() {
-    const basket = getBasket();
-    const container = document.getElementById("basket-items");
-    container.innerHTML = "";
-
-    // Si está vacío, mostrar mensaje
-    if (basket.length === 0) {
-        container.innerHTML =
-            '<p class="text-gray-400">Your basket is empty.</p>';
-        return;
+    function getBasket() {
+        return JSON.parse(localStorage.getItem("basket")) || [];
     }
 
-    // Mostrar cada producto del carrito
-    basket.forEach((item) => {
-        const div = document.createElement("div");
-        div.className =
-            "flex items-center justify-between bg-gray-800 p-2 rounded";
-        div.innerHTML = `
-            <img src="https://steamcommunity-a.akamaihd.net/economy/image/${item.image}" alt="${item.name}" class="w-12 h-12 rounded object-cover mr-2">
-            <div class="flex-1">
-                <p class="text-sm font-semibold">${item.name}</p>
-                <p class="text-sm text-gray-400">${item.price} EUR</p>
-            </div>
-            <button class="remove-item text-red-500 hover:text-red-700 text-lg font-bold" data-id="${item.id}">&times;</button>
-        `;
-        container.appendChild(div);
-    });
+    function updateBasketCount() {
+        const basket = getBasket();
+        const count = basket.length;
+        let countBadge = basketToggle.querySelector(".basket-count");
+        if (!countBadge) {
+            countBadge = document.createElement("span");
+            countBadge.className =
+                "basket-count absolute top-0 right-0 bg-red-600 text-white text-xs px-2 rounded-full";
+            basketToggle.appendChild(countBadge);
+        }
+        countBadge.textContent = count;
+        countBadge.classList.toggle("hidden", count === 0);
+    }
 
-    // Evento para eliminar un producto individual del carrito
-    document.querySelectorAll(".remove-item").forEach((btn) => {
-        btn.addEventListener("click", () => {
-            const id = btn.getAttribute("data-id");
-            removeFromBasket(id); // Eliminar producto específico
+    function renderBasketItems() {
+        const basket = getBasket();
+        const container = document.getElementById("basket-items");
+        container.innerHTML = "";
+
+        if (basket.length === 0) {
+            container.innerHTML =
+                '<p class="text-gray-400">Your basket is empty.</p>';
+            return;
+        }
+
+        basket.forEach((item) => {
+            const div = document.createElement("div");
+            div.className =
+                "flex items-center justify-between bg-gray-800 p-2 rounded";
+            div.innerHTML = `
+                <img src="https://steamcommunity-a.akamaihd.net/economy/image/${item.image}" alt="${item.name}" class="w-12 h-12 rounded object-cover mr-2">
+                <div class="flex-1">
+                    <p class="text-sm font-semibold">${item.name}</p>
+                    <p class="text-sm text-gray-400">${item.price} EUR</p>
+                </div>
+                <button class="remove-item text-red-500 hover:text-red-700 text-lg font-bold" data-id="${item.id}">&times;</button>
+            `;
+            container.appendChild(div);
         });
-    });
-}
 
-// Eliminar producto del carrito por ID
-function removeFromBasket(id) {
-    let basket = getBasket(); // Obtener carrito actual
-    basket = basket.filter((item) => item.id !== id); // Quitar producto
-    localStorage.setItem("basket", JSON.stringify(basket)); // Guardar carrito actualizado
-    updateBasketCount(); // Actualizar contador
-    renderBasketItems(); // Refrescar vista del sidebar
-}
+        document.querySelectorAll(".remove-item").forEach((btn) => {
+            btn.addEventListener("click", () => {
+                const id = btn.getAttribute("data-id");
+                removeFromBasket(id);
+            });
+        });
+    }
+
+    function removeFromBasket(id) {
+        let basket = getBasket();
+        basket = basket.filter((item) => item.id !== id);
+        localStorage.setItem("basket", JSON.stringify(basket));
+        updateBasketCount();
+        renderBasketItems();
+    }
+
+    // Llamar contador al cargar la página
+    updateBasketCount();
+
+    // Escuchar clics en los botones js-add-to-basket
+    document.addEventListener("click", function (e) {
+        if (e.target.classList.contains("js-add-to-basket")) {
+            const btn = e.target;
+            const product = {
+                id: btn.dataset.id,
+                name: btn.dataset.name,
+                price: btn.dataset.price,
+                image: btn.dataset.image,
+            };
+            addToBasket(product);
+        }
+    });
+});
