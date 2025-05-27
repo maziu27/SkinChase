@@ -39,8 +39,8 @@ class StripeLinkController extends Controller
                     'quantity' => 1,
                 ]],
                 'mode' => 'payment',
-                'success_url' => url('/payment-success'),
-                'cancel_url' => url('/payment-cancel'),
+            'success_url' => url('/payment-success?item_id=' . $itemId),
+            'cancel_url' => url('/payment-cancel'),
             ]);
 
             return response()->json(['url' => $checkoutSession->url]);

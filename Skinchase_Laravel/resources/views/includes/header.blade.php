@@ -46,14 +46,15 @@
             @if(Auth::check() && Auth::user()->profile_picture)
                 <img src="{{ asset('storage/' . Auth::user()->profile_picture) }}" class="w-10 h-10 rounded-md">
             @else
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-purple-400" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M12 14l9 5-3-9 9-5h-11L12 2l-3 3H1l9 5-3 9z" />
-                </svg>
+                <svg width="40" height="40" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="32" cy="20" r="12" fill="#C4C4C4"/>
+  <path d="M16 52C16 43.1634 23.1634 36 32 36C40.8366 36 48 43.1634 48 52V56H16V52Z" fill="#C4C4C4"/>
+</svg>
             @endif
         </button>
 
+        @include('includes.basket-side')
+        
         <!-- Dropdown Menu -->
         <div id="profile-dropdown"
             class="origin-top-right absolute right-0 mt-2 w-56 bg-gray-900 text-white rounded-md shadow-lg transform scale-95 opacity-0 transition-all duration-300 pointer-events-none z-50">
@@ -160,6 +161,8 @@
             dropdown.classList.add('pointer-events-none', 'opacity-0', 'scale-95');
         }
     });
+
+
 
     @auth
         console.log('{{ Auth::user()->name }} is logged in');

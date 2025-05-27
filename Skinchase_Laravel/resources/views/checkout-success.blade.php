@@ -6,7 +6,8 @@
             <h1 class="text-5xl font-bold text-center mb-8 text-purple-400">
                 {{ Auth::user()->name }}, thank you for buying on SkinChase 🎉
             </h1>
-
+                 <p>You bought: <strong>{{ $item->name }}</strong></p>
+                <img src="https://steamcommunity-a.akamaihd.net/economy/image/{{ $item->image }}" alt="{{ $item->name }}" class="mx-auto mt-4" style="width: 200px;">
             <img class="w-48 h-auto mx-auto" src="{{ asset('images/thumbs-up.png') }}" alt="Thumbs up">
         </div>
     @else

@@ -5,6 +5,7 @@ use App\Http\Controllers\MarketController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StripeLinkController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\makeTrade;
 use App\Http\Controllers\mySQLController;
 
 Route::get('/inventory', function () {
@@ -31,7 +32,8 @@ Route::post('/create-stripe-link', [StripeLinkController::class, 'create']);
 
 //rutas para redireccionamiento de pago
 //Route::view('/payment-success', 'checkout-success');
-Route::get('/payment-success', [\App\Http\Controllers\PaymentController::class, 'success'])->name('payment.success');
+
+Route::get('/payment-success/{item_id}', [MakeTrade::class, 'comprarItem'])->name('payment.success');
 
 Route::view('/payment-cancel', 'checkout-cancel');
 

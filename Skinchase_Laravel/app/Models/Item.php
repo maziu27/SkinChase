@@ -14,8 +14,10 @@ class Item extends Model
         'float_value',
     ];
 
-    public function trade()
-{
-    return $this->belongsTo(Trade::class);
-}
+    protected $table = 'items';
+
+    public function trades()
+    {
+        return $this->hasMany(Trade::class);
+    }
 }
