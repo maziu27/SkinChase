@@ -23,7 +23,9 @@ class makeTrade extends Controller
 
         Trade::create([
             'user_id' => $user->id,
+            'user_name' => $user->name,
             'item_id' => $item->id,
+            'item_name' => $item->name,
         ]);
 
         // Limpiar el item_id de la sesión

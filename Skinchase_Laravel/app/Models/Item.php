@@ -18,6 +18,6 @@ class Item extends Model
 
     public function trades()
     {
-        return $this->hasMany(Trade::class);
+        return $this->belongsToMany(User::class, 'trades');
     }
 }

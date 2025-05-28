@@ -24,6 +24,6 @@ class User extends Authenticatable
 
     public function trades()
 {
-    return $this->hasMany(Trade::class);
+    return $this->belongsToMany(Item::class, 'trades');
 }
 }
