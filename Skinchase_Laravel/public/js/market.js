@@ -1,6 +1,5 @@
 // Esperar a que el DOM esté completamente cargado
-document.addEventListener("DOMContentLoaded", function()  {
-
+document.addEventListener("DOMContentLoaded", function () {
     // Cargar productos desde la API al iniciar la página
     fetch("/api/fetch-data")
         .then((response) => response.json())
@@ -16,7 +15,8 @@ document.addEventListener("DOMContentLoaded", function()  {
     const container = document.getElementById("contenedor-productos");
 
     async function fetchItems(params = "") {
-        container.innerHTML = "<p class='col-span-full text-center text-gray-400'>Loading...</p>";
+        container.innerHTML =
+            "<p class='col-span-full text-center text-gray-400'>Loading...</p>";
 
         try {
             const response = await fetch(`/items?${params}`);
@@ -25,28 +25,42 @@ document.addEventListener("DOMContentLoaded", function()  {
             container.innerHTML = "";
 
             if (items.length === 0) {
-                container.innerHTML = "<p class='col-span-full text-center text-yellow-400'> No results were found.</p>";
+                container.innerHTML =
+                    "<p class='col-span-full text-center text-yellow-400'> No results were found.</p>";
                 return;
             }
 
-            items.forEach(item => {
+            items.forEach((item) => {
                 const card = document.createElement("div");
-                card.className = "bg-[#1A1D24] h-[428px] rounded-xl overflow-hidden shadow-md text-white p-4 flex flex-col gap-2 transition hover:shadow-lg cursor-pointer";
-            
+                card.className =
+                    "bg-[#1A1D24] h-[428px] rounded-xl overflow-hidden shadow-md text-white p-4 flex flex-col gap-2 transition hover:shadow-lg cursor-pointer";
+
                 card.innerHTML = `
                     <div class="relative bg-gradient-to-b from-purple-700 to-purple-900 rounded-lg p-2 flex justify-center items-center">
-                        <img src="https://steamcommunity-a.akamaihd.net/economy/image/${item.icon_url}" 
-                             alt="${item.name}" 
-                             class="h-32 object-contain">
+                        <img src="https://steamcommunity-a.akamaihd.net/economy/image/${
+                            item.icon_url
+                        }" alt="${item.name}" class="h-32 object-contain">
                     </div>
             
                     <div class="mt-2">
                         <h2 class="text-orange-500 font-semibold text-md">${item.name}</h2>
-                        <p class="text-green-400 text-lg font-bold mt-1">€${(item.price / 1).toFixed(2)}</p>
-                    </div>
-            
-                    <div class="flex items-center gap-2 text-sm mt-1">
-                        <p class="text-sm text-gray-400">${item.float_value != null ? `Float: ${item.float_value}` : `Sticker`}</p>
+                            <p class="text-green-400 text-lg font-bold mt-1">€${(
+                                item.price / 1
+                            ).toFixed(2)}</p>
+                            </div>
+
+                        <div class="flex items-center gap-2 text-sm mt-1">
+                            <p class="text-sm text-gray-400">
+                                ${/*si el nombre incluye "package" asigna el valor container,
+                                    si el float no es null pone el float y el valor, y si es null
+                                    asigna el valor a sticker */
+                                    item.name.includes("Package")
+                                        ? "Container"
+                                        : item.float_value != null
+                                        ? `Float: ${item.float_value}`
+                                        : "Sticker"
+                                }
+                            </p>
                     </div>
             
                     <div class="flex gap-2 mt-auto">
@@ -54,29 +68,31 @@ document.addEventListener("DOMContentLoaded", function()  {
                             data-id="${item.asset_id}"
                             data-name="${item.name}"
                             data-price="${(item.price / 1).toFixed(2)}"
-                            data-image="${item.icon_url}">Add to basket</button>
+                            data-image="${item.icon_url}">Add to basket
+                            </button>
             
                         <button class="buy-now flex-1 bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded-md text-sm transition"
                             data-id="${item.asset_id}"
-                            data-name="${item.market_hash_name}"
+                            data-name="${item.name}"
                             data-price="${(item.price / 1).toFixed(2)}"
-                            data-image="${item.icon_url}">Buy now</button>
+                            data-image="${item.icon_url}">Buy now
+                        </button>
                     </div>
                 `;
-            
+
                 // Agregar listener para abrir el modal
                 card.addEventListener("click", function (e) {
                     if (e.target.closest("button")) return; // Evita que se abra el modal al hacer clic en botones
                     openModal(item);
                 });
-            
+
                 container.appendChild(card);
             });
         } catch (err) {
             console.error("Error loading items:", err);
-            container.innerHTML = "<p class='col-span-full text-center text-red-500'>Error loading items.</p>";
+            container.innerHTML =
+                "<p class='col-span-full text-center text-red-500'>Error loading items.</p>";
         }
-        
     }
 
     // Botón "Buy Now" → redirige a Stripe
@@ -114,7 +130,6 @@ document.addEventListener("DOMContentLoaded", function()  {
         }
     });
 
-
     // Enviar filtros
     form.addEventListener("submit", (e) => {
         e.preventDefault();
@@ -144,7 +159,7 @@ sortToggle.addEventListener("click", () => {
     sortOptions.classList.toggle("hidden");
 });
 
-sortOptions.querySelectorAll("li").forEach(option => {
+sortOptions.querySelectorAll("li").forEach((option) => {
     option.addEventListener("click", () => {
         const value = option.getAttribute("data-value");
         sortByInput.value = value;
@@ -155,7 +170,7 @@ sortOptions.querySelectorAll("li").forEach(option => {
                 </svg>`;
 
         sortOptions.classList.add("hidden");
-        form.dispatchEvent(new Event('submit'));
+        form.dispatchEvent(new Event("submit"));
     });
 });
 
@@ -165,11 +180,10 @@ function toggleSidebar() {
     sidebar.classList.toggle("hidden");
 }
 
-
 /* 
 
 
-Funciones carrito
+    Funciones carrito
 
 
 */
