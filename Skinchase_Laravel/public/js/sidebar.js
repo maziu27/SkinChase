@@ -11,3 +11,5 @@ function toggleSidebar() {
         mainContent.style.marginLeft = '0';
     }
 }
+
+//esto no hace nada literalmente kajajaja

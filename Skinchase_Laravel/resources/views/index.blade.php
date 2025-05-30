@@ -9,7 +9,7 @@
             SkinChase provides the most advanced trading tools that power millions of skin sales. Buy CS2 skins with unparalleled ease and security.
         </p>
         <div class="flex justify-center gap-4">
-            <a href="{{ route('market') }}" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg flex items-center gap-2">
+            <a href="{{ route('market') }}" class="bg-purple-500 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-lg flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-3" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

@@ -1,5 +1,5 @@
 <aside id="sidebar"
-                class="bg-[#1e1e1e] p-5 w-full md:w-[250px] rounded-[10px] transition-all duration-300 ease-in-out max-h-[calc(26vh-2rem)] overflow-y-auto">
+                class="bg-[#1e1e1e] p-5 w-full md:w-[250px] rounded-[10px] transition-all duration-300 ease-in-out max-h-[calc(29vh-2rem)] overflow-y-auto">
                 <form id="filter-form" class="space-y-4">
                     @csrf
 
