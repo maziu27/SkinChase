@@ -32,9 +32,7 @@ Route::get('/legal', function(){
 Route::post('/create-stripe-link', [StripeLinkController::class, 'create']);
 
 //rutas para redireccionamiento de pago
-//Route::view('/payment-success', 'checkout-success');
-
-Route::get('/payment-success')->name('payment.success');
+Route::get('/payment-success', [makeTrade::class, 'registrarCompra'])->name('payment-success');
 
 Route::view('/payment-cancel', 'checkout-cancel');
 

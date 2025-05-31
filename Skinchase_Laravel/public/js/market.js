@@ -313,4 +313,36 @@ document.addEventListener("DOMContentLoaded", () => {
             addToBasket(product);
         }
     });
+
+    // Botón "Checkout All" para pagar todos los productos en la cesta
+    const checkoutAll = document.getElementById("checkout-all");
+    if (checkoutAll) {
+        checkoutAll.addEventListener("click", () => {
+            const basket = JSON.parse(localStorage.getItem("basket")) || [];
+
+            if (basket.length === 0) {
+                alert("Your basket is empty.");
+                return;
+            }
+
+            fetch("/create-stripe-link", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRF-TOKEN": document
+                        .querySelector('meta[name="csrf-token"]')
+                        .getAttribute("content"),
+                },
+                body: JSON.stringify({ items: basket }),
+            })
+                .then((res) => res.json())
+                .then((data) => {
+                    if (data.url) {
+                        window.location.href = data.url;
+                    } else {
+                        alert("Payment link failed.");
+                    }
+                });
+        });
+    }
 });

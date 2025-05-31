@@ -23,7 +23,7 @@ class User extends Authenticatable
     ];
 
     public function trades()
-{
-    return $this->belongsToMany(Item::class, 'trades');
-}
+    {
+        return $this->hasMany(\App\Models\Trade::class);
+    }
 }
