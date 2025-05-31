@@ -1,16 +1,22 @@
 <header class="bg-gray-800 shadow-md py-4 px-6 flex justify-between items-center relative z-50">
     <!-- Logo + Nav -->
     <div class="flex items-center space-x-6">
-        <a href="{{ route('home') }}" class="text-purple-400 hover:text-[#0095d9] font-bold text-xl">SkinChase</a>
+        <a href="{{ route('home') }}" class="text-purple-400 hover:text-purple-700 font-bold text-xl">SkinChase</a>
         <nav class="hidden md:flex space-x-6">
             <a href="{{ route('market') }}"
-                class="flex items-center gap-2 text-purple-400 hover:text-[#0095d9] font-bold text-xl">
+                class="flex items-center gap-2 text-purple-400 hover:text-purple-700 font-bold text-xl">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M3 9l1-4h16l1 4M4 9h16v10a1 1 0 01-1 1h-3a1 1 0 01-1-1v-4H9v4a1 1 0 01-1 1H5a1 1 0 01-1-1V9z" />
                 </svg>
                 Market
+            </a>
+
+            <a href="{{route('inventory')}}" class="text-purple-400 hover:text-purple-700 font-bold text-xl">
+                
+                </svg>
+                Inventory
             </a>
         </nav>
     </div>
@@ -20,7 +26,7 @@
         <!-- Basket Wrapper + Button -->
         <div id="basket-wrapper" class="relative">
             <!-- Botón del carrito -->
-            <button id="basket-toggle" class="relative text-purple-400 hover:text-[#0095d9]">
+            <button id="basket-toggle" class="relative text-purple-400 hover:text-purple-700">
                 <img src="{{ asset('images/basket.svg')}}" class="w-[40px] h-[40px] ">
                 <span class="basket-count absolute top-0 right-0 bg-red-600 text-white text-xs px-2 rounded-full hidden">0</span>
             </button>
@@ -31,7 +37,7 @@
         <div class="relative" id="dropdown-wrapper">
             <button id="profile-button" class="focus:outline-none">
                 @if(Auth::check() && Auth::user()->profile_picture)
-                    <img src="{{ asset('storage/' . Auth::user()->profile_picture) }}" class="w-10 h-10 rounded-md">
+                <img src="{{ asset('storage/' . Auth::user()->profile_picture) }}" class="w-10 h-10 rounded-md">
                 @else
                     <svg width="40" height="40" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="32" cy="20" r="12" fill="#C4C4C4" />

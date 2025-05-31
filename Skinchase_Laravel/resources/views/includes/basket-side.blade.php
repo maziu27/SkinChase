@@ -9,6 +9,11 @@
                     <!-- Aquí se listarán los productos -->
                 </div>
 
+                <div class="p-4 border-t border-gray-700 flex justify-between items-center">
+                    <span class="text-lg font-medium">Total:</span>
+                    <span id="basket-total" class="text-lg font-bold">$0.00</span>
+                </div>
+
                 <div class="p-4 border-t border-gray-700">
                     <button id="checkout-all" class="w-full bg-lime-600 hover:bg-lime-900 text-white py-2 rounded">Checkout</button>
                 </div>

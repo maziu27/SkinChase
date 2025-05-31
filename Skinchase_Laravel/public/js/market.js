@@ -252,13 +252,16 @@ document.addEventListener("DOMContentLoaded", () => {
         const basket = getBasket();
         const container = document.getElementById("basket-items");
         container.innerHTML = "";
-
+    
         if (basket.length === 0) {
             container.innerHTML =
                 '<p class="text-gray-400">Your basket is empty.</p>';
+            document.getElementById("basket-total").textContent = "€0.00";
             return;
         }
-
+    
+        let total = 0;
+    
         basket.forEach((item) => {
             const div = document.createElement("div");
             div.className =
@@ -272,8 +275,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 <button class="remove-item text-red-500 hover:text-red-700 text-lg font-bold" data-id="${item.id}">&times;</button>
             `;
             container.appendChild(div);
+    
+            total += parseFloat(item.price);
         });
-
+    
+        document.getElementById("basket-total").textContent = `€${total.toFixed(2)}`;
+    
         document.querySelectorAll(".remove-item").forEach((btn) => {
             btn.addEventListener("click", () => {
                 const id = btn.getAttribute("data-id");

@@ -85,6 +85,12 @@
                 </div>
 
                 <div>
+                    <label class="block text-sm text-gray-300 mb-1" for="password_confirmation">Steam Trade Link</label>
+                    <input type="password" name="password_confirmation" id="password_confirmation"
+                        class="w-full bg-gray-800 text-white border border-gray-600 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                </div>
+
+                <div>
                     <label class="block text-sm text-gray-300 mb-1" for="profile_picture">Profile Picture</label>
                     <input type="file" name="profile_picture" id="profile_picture"
                         class="w-full bg-gray-800 text-white border border-gray-600 rounded px-4 py-2">
@@ -103,5 +109,7 @@
                 Log out
             </button>
         </form>
+
+        
     </div>
 @endsection

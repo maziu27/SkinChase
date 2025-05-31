@@ -23,6 +23,7 @@ Route::get('/test', function () {
 // para la vista de prueba que saca las mierdas de la base de datos
 Route::get('/items', [mySQLController::class, 'getItemsJson']);
 
+
 Route::get('/legal', function(){
     return view('legal');
 })->name("legal");
@@ -37,7 +38,7 @@ Route::get('/payment-success')->name('payment.success');
 
 Route::view('/payment-cancel', 'checkout-cancel');
 
-
+Route::view('/inventory', 'inventory')->name('inventory');
 
 //rutas para la pagina principal y el api para visualizar los productos
 Route::get('/market', [MarketController::class, 'index'])->name("market");

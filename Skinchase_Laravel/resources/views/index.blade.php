@@ -3,13 +3,13 @@
 
     <div class="text-white text-center px-6 md:px-20 py-16 bg-[#0f0f1b]">
         <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-            Revolutionize Your CS2 Trading Experience with SkinChase
+            Revolutionize Your Counter-Strike 2 Trading Experience with SkinChase
         </h1>
         <p class="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto mb-10">
             SkinChase provides the most advanced trading tools that power millions of skin sales. Buy CS2 skins with unparalleled ease and security.
         </p>
         <div class="flex justify-center gap-4">
-            <a href="{{ route('market') }}" class="bg-purple-500 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-lg flex items-center gap-2">
+            <a href="{{ route('market') }}" class="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-lg flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-3" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
