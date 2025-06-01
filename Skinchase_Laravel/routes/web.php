@@ -7,6 +7,7 @@ use App\Http\Controllers\StripeLinkController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\makeTrade;
 use App\Http\Controllers\mySQLController;
+use App\Http\Controllers\SteamController;
 
 Route::get('/inventory', function () {
     return view('inventory');
@@ -36,7 +37,10 @@ Route::get('/payment-success', [makeTrade::class, 'registrarCompra'])->name('pay
 
 Route::view('/payment-cancel', 'checkout-cancel');
 
-Route::view('/inventory', 'inventory')->name('inventory');
+// Route::view('/inventory', 'inventory')->name('inventory'); // Duplicated, removed.
+
+// API route for fetching Steam inventory
+Route::get('/api/steam/inventory', [SteamController::class, 'fetchSteamInventory']);
 
 //rutas para la pagina principal y el api para visualizar los productos
 Route::get('/market', [MarketController::class, 'index'])->name("market");

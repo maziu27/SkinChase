@@ -16,7 +16,7 @@
             <a href="{{route('inventory')}}" class="text-purple-400 hover:text-purple-700 font-bold text-xl">
                 
                 </svg>
-                Inventory
+                Sell
             </a>
         </nav>
     </div>

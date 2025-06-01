@@ -13,12 +13,10 @@
                 <div>
                     <p class="text-xl font-bold"> {{ Auth::user()->name }}</p>
                     <div class="flex items-center gap-2 text-sm mt-1">
-                        <span class="bg-green-500 text-white px-2 py-1 rounded">Verified</span>
-                        {{--<span class="bg-green-700 text-white px-2 py-1 rounded">Seller</span>--}}
                     </div>
                 </div>
             </div>
-            <span class="bg-green-500 text-white px-3 py-1 rounded-md font-medium mt-4 md:mt-0">✔ KYC Approved</span>
+            <span class="bg-green-500 text-white px-3 py-1 rounded-md font-medium mt-4 md:mt-0">✔ Verified</span>
         </div>
 
         {{-- Earnings --}}
@@ -46,6 +44,7 @@
         {{-- Tabs (no funcionales por ahora) --}}
         <div class="flex space-x-4 border-b border-gray-600 text-sm text-gray-300 pt-4">
             <button class="pb-2 border-b-2 border-purple-500 text-purple-400 font-semibold">Personal Info</button>
+            <button class="pb-2">Account settings</button>
             <button class="pb-2">Transactions</button>
             <button class="pb-2">Trades</button>
         </div>
@@ -85,9 +84,9 @@
                 </div>
 
                 <div>
-                    <label class="block text-sm text-gray-300 mb-1" for="password_confirmation">Steam Trade Link</label>
-                    <input type="password" name="password_confirmation" id="password_confirmation"
-                        class="w-full bg-gray-800 text-white border border-gray-600 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                    <label class="block text-sm text-gray-300 mb-1" for="trade_link">Steam Trade Link</label>
+                    <input type="url" name="trade_link" id="trade_link" value="{{ old('trade_link', Auth::user()->trade_link) }}" 
+                    class="w-full bg-gray-800 text-white border border-gray-600 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500">
                 </div>
 
                 <div>
