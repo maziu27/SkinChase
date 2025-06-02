@@ -17,17 +17,17 @@
             </svg>
             <a href="{{ route('market') }}" class="text-white">Market</a>
         </li>
+        <li class="flex items-center px-4 py-2 hover:bg-gray-700 cursor-pointer text-yellow-400">
+            <img src="{{ asset('images/sale-tag.svg')}}" class=" w-5 h-5 mr-3">
+
+            </img> 
+            <a href="inventory">Sell items</a>
+        </li>
         <li class="flex items-center px-4 py-2 hover:bg-gray-700 cursor-pointer text-orange-400">
             <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path d="M3 12h18M3 12l6 6m-6-6l6-6" />
             </svg>
             <a href="#">Trades</a>
-        </li>
-        <li class="flex items-center px-4 py-2 hover:bg-gray-700 cursor-pointer text-yellow-400">
-            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path d="M5 13l4 4L19 7" />
-            </svg> 
-            <a href="#">Sell items</a>
         </li>
         <li class="flex items-center px-4 py-2 hover:bg-gray-700 cursor-pointer text-yellow-300">
             <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">

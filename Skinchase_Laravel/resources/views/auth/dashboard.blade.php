@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1 class="text-center my-6 text-3xl font-bold text-purple-500">Welcome to SkinChase</h1>
+    <h1 class="text-center my-6 text-3xl font-bold text-purple-500">Welcome back, {{Auth::user()->name}} </h1>
 
     {{-- Perfil del usuario --}}
     <div class="max-w-5xl mx-auto bg-[#1A1D24] text-white rounded-xl p-6 shadow-lg space-y-6">
@@ -44,7 +44,7 @@
         {{-- Tabs (no funcionales por ahora) --}}
         <div class="flex space-x-4 border-b border-gray-600 text-sm text-gray-300 pt-4">
             <button class="pb-2 border-b-2 border-purple-500 text-purple-400 font-semibold">Personal Info</button>
-            <button class="pb-2">Account settings</button>
+            <button class="pb-2">Items for sale</button>
             <button class="pb-2">Transactions</button>
             <button class="pb-2">Trades</button>
         </div>
@@ -87,6 +87,7 @@
                     <label class="block text-sm text-gray-300 mb-1" for="trade_link">Steam Trade Link</label>
                     <input type="url" name="trade_link" id="trade_link" value="{{ old('trade_link', Auth::user()->trade_link) }}" 
                     class="w-full bg-gray-800 text-white border border-gray-600 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                    
                 </div>
 
                 <div>
@@ -106,6 +107,13 @@
             @csrf
             <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-6 rounded transition">
                 Log out
+            </button>
+        </form>
+
+        <form method="POST" action="{{ route('logout') }}" class="text-center pt-4">
+            @csrf
+            <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-6 rounded transition">
+                Delete account
             </button>
         </form>
 

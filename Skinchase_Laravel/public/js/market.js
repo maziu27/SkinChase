@@ -117,15 +117,21 @@ document.addEventListener("DOMContentLoaded", function () {
                         .querySelector('meta[name="csrf-token"]')
                         .getAttribute("content"),
                 },
-                body: JSON.stringify(productData),
+                body: JSON.stringify({ items: [productData] }),
             })
                 .then((res) => res.json())
                 .then((data) => {
                     if (data.url) {
-                        window.location.href = data.url; // Redirigir a Stripe
+                        window.location.href = data.url;
+                    } else if (data.error) {
+                        alert("Error: " + data.error);
                     } else {
-                        alert("Payment link failed."); // Mostrar error
+                        alert("Payment link failed.");
                     }
+                })
+                .catch((error) => {
+                    console.error("Fetch error:", error);
+                    alert("Error en la conexión con el servidor.");
                 });
         }
     });

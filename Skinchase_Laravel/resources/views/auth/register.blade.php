@@ -48,6 +48,10 @@
                 <input name="trade_link" type="text" placeholder="https://steamcommunity.com/tradeoffer/new/?partner=example" required
                     value="{{ old('trade_link') }}"
                     class="mt-1 text-black block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                   <p class="text-gray-400 text-xs mt-1 block">
+                        You can find your Steam trade link 
+                        <a href="http://steamcommunity.com/my/tradeoffers/privacy" class="text-blue-500" target="_blank">here</a>.
+                    </p>
             </div>
 
             <div>

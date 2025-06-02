@@ -15,7 +15,7 @@
 
             <a href="{{route('inventory')}}" class="text-purple-400 hover:text-purple-700 font-bold text-xl">
                 
-                </svg>
+                <img src="{{ asset('images/sale-tag.svg')}}" class=" purple-500 w-5 h-5 inline-block">
                 Sell
             </a>
         </nav>

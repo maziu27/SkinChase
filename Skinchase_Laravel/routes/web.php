@@ -35,7 +35,7 @@ Route::post('/create-stripe-link', [StripeLinkController::class, 'create']);
 //rutas para redireccionamiento de pago
 Route::get('/payment-success', [makeTrade::class, 'registrarCompra'])->name('payment-success');
 
-Route::view('/payment-cancel', 'checkout-cancel');
+Route::view('/payment-cancel', 'market');
 
 // Route::view('/inventory', 'inventory')->name('inventory'); // Duplicated, removed.
 
@@ -55,6 +55,7 @@ Route::get('/register', [AuthController::class, 'showRegister'])->name('register
 Route::post('/register', [AuthController::class, 'register']);
 Route::put('/profile/update', [AuthController::class, 'updateProfile'])->name('profile.update');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
 
 Route::get('/dashboard', function () {
     return view('auth/dashboard');

@@ -5,18 +5,18 @@
 @include('includes.scripts')
 
 @section('content')
-<h1 class="text-center text-4xl md:text-6xl font-bold mb-6 leading-tight">Steam inventory</h1>
+<h1 class="text-center p-3 text-purple-400 text-4xl md:text-6xl font-bold mb-6 leading-tight">Steam inventory</h1>
 
 <div class="max-w-6xl mx-auto p-4">
-    <div id="inventory-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    <div id="inventory-container" class="flex-1 grid gap-4 xl:grid-cols-5 lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-3 grid-cols-2 overflow-hidden">
         <!-- Inventory items will be injected here by inventory.js -->
     </div>
 </div>
 @endsection
 <script>
-console.log("Archivo inventory.js cargado");
+console.log("Steam inventoory loaded correctly");
 document.addEventListener("DOMContentLoaded", function () {
-    console.log("DOM listo, ejecutando fetchInventory");
+    console.log("DOM is loaded, starting to fetch inventory...");
     const inventoryContainer = document.getElementById("inventory-container");
   
     function renderInventory(items) {
@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
     async function fetchInventory() {
       inventoryContainer.innerHTML = "<p class='text-gray-400'>Loading your Steam inventory...</p>";
 
-      console.log("Iniciando fetch del inventario Steam...");
+      console.log("Initializing fetch inventory");
       try {
         const response = await fetch("/api/steam/inventory");
         const items = await response.json();

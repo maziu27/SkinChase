@@ -50,11 +50,12 @@ class SteamController extends Controller
                     'icon_url' => 'https://steamcommunity-a.akamaihd.net/economy/image/' . $desc['icon_url'],
                     'type' => $desc['type'] ?? null,
                     'tradable' => $desc['tradable'] ?? false,
-                    'tags' => $desc['tags'] ?? [],
+                    'tags' => array_slice($desc['tags'] ?? [], 0, 5),
                 ];
             }
         }
 
         return response()->json($items);
     }
+
 }

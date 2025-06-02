@@ -15,7 +15,10 @@ class StripeLinkController extends Controller
         Stripe::setApiKey(env('STRIPE_SECRET'));
 
         // Obtener los datos de múltiples productos desde la solicitud
-        $items = $request->input('items');
+        $items = $request->input('items', []);
+        if (empty($items)) {
+            return response()->json(['error' => 'No se recibieron productos para procesar.'], 400);
+        }
         $lineItems = [];
 
         foreach ($items as $item) {
@@ -39,7 +42,7 @@ class StripeLinkController extends Controller
                 'line_items' => $lineItems,
                 'mode' => 'payment',
                 'success_url' => url('/payment-success'),
-                'cancel_url' => url('/checkout-cancel'),
+                'cancel_url' => url('/market'),
             ]);
 
             LaravelSession::put('purchased_items', $items);
