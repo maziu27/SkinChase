@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Inventory | SkinChase')
+
 @section('content')
 
 @include('includes.scripts')

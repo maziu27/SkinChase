@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Redirecting | SkinChase')
+
 <head>
     <meta http-equiv="refresh" content="0; URL={{ Auth::check() ? route('dashboard') : route('login') }}">
     <title>Redirecting...</title>

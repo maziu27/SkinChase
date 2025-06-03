@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Dashboard | SkinChase')
+
 @section('content')
     <h1 class="text-center my-6 text-3xl font-bold text-purple-500">Welcome back, {{Auth::user()->name}} </h1>
 
