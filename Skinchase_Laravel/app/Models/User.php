@@ -24,6 +24,11 @@ class User extends Authenticatable
 
     public function trades()
     {
-        return $this->hasMany(\App\Models\Trade::class);
+        return $this->hasMany(Trade::class);
+    }
+
+    public function steamItems()
+    {
+        return $this->hasMany(SteamItem::class);
     }
 }

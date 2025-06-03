@@ -20,7 +20,7 @@
         <li class="flex items-center px-4 py-2 hover:bg-gray-700 cursor-pointer text-yellow-400">
             <img src="{{ asset('images/sale-tag.svg')}}" class=" w-5 h-5 mr-3">
 
-            </img> 
+            </img>
             <a href="inventory">Sell items</a>
         </li>
         <li class="flex items-center px-4 py-2 hover:bg-gray-700 cursor-pointer text-orange-400">

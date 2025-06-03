@@ -37,7 +37,7 @@
 
                 <!-- Imagen -->
                 <img id="modal-image" src="" alt="Product"
-                class="w-96 h-96 object-contain mb-6 transition-transform duration-300 ease-in-out hover:scale-150">
+                class="w-96 h-96 object-contain mb-6 transition-transform duration-300 ease-in-out md:hover:scale-150">
 
                 <!-- Botones -->
                 <div class="flex gap-4">
