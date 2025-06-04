@@ -7,7 +7,8 @@
                 <h1 class="text-4xl md:text-5xl font-bold text-center mb-8 text-purple-400">
                     {{ Auth::user()->name }}, thank you for buying on SkinChase 🎉
                 </h1>
-                
+               <img class="w-48 h-auto mx-auto mt-5 mb-5" src="{{ asset('images/thumbs-up.png') }}" alt="Thumbs up">
+
                 <div class="bg-gray-800 rounded-lg p-6 mb-8">
                     <h2 class="text-2xl font-semibold mb-4 text-green-400">Order Summary</h2>
                     
@@ -27,7 +28,7 @@
                         @endforeach
                     </div>
                     
-                    <div class="mt-6 pt-4 border-t border-gray-700 flex justify-between items-center">
+                    <div class="mt-6 pt-4 border-gray-700 flex justify-between items-center">
                         <span class="text-xl font-semibold">Total:</span>
                         <span class="text-2xl text-green-400 font-bold">
                             €{{ number_format(array_sum(array_column($items, 'price')), 2) }}
@@ -42,7 +43,6 @@
                     </a>
                 </div>
                 
-                <img class="w-48 h-auto mx-auto mt-12" src="{{ asset('images/thumbs-up.png') }}" alt="Thumbs up">
             </div>
         </div>
     @else
