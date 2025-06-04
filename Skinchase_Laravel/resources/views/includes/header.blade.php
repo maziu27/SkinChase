@@ -13,9 +13,15 @@
                 Market
             </a>
 
-            <a href="{{route('inventory')}}" class="text-purple-400 hover:text-purple-700 font-bold text-xl">
-                
-                <img src="{{ asset('images/sale-tag.svg')}}" class=" purple-500 w-5 h-5 inline-block">
+            <a href="{{route('inventory')}}"
+                class="flex items-center gap-2 text-purple-400 hover:text-purple-700 font-bold text-xl">
+                <svg class="w-5 h-5 text-purple-400 hover:text-purple-700" fill="none" stroke="currentColor"
+                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Your sale-tag SVG path here -->
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2">
+                    </path>
+                </svg>
                 Sell
             </a>
         </nav>
@@ -27,28 +33,34 @@
         <div id="basket-wrapper" class="relative">
             <!-- Botón del carrito -->
             <button id="basket-toggle" class="relative text-purple-400 hover:text-purple-700">
-                <img src="{{ asset('images/basket.svg')}}" class="w-[40px] h-[40px] ">
-                <span class="basket-count absolute top-0 right-0 bg-red-600 text-white text-xs px-2 rounded-full hidden">0</span>
+                <svg class="w-10 h-10 text-purple-400 hover:text-purple-700" fill="none" stroke="currentColor"
+                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                </svg>
+                <span
+                    class="basket-count absolute top-0 right-0 bg-red-600 text-white text-xs px-2 rounded-full hidden">0</span>
             </button>
 
             @include('includes.basket-side')
 
-        <!-- Dropdown Profile -->
-        <div class="relative" id="dropdown-wrapper">
-            <button id="profile-button" class="focus:outline-none">
-                @if(Auth::check() && Auth::user()->profile_picture)
-                <img src="{{ asset('storage/' . Auth::user()->profile_picture) }}" class="w-10 h-10 rounded-md">
-                @else
-                    <svg width="40" height="40" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="32" cy="20" r="12" fill="#C4C4C4" />
-                        <path d="M16 52C16 43.1634 23.1634 36 32 36C40.8366 36 48 43.1634 48 52V56H16V52Z" fill="#C4C4C4" />
-                    </svg>
-                @endif
-            </button>
+            <!-- Dropdown Profile -->
+            <div class="relative" id="dropdown-wrapper">
+                <button id="profile-button" class="focus:outline-none">
+                    @if(Auth::check() && Auth::user()->profile_picture)
+                        <img src="{{ asset('storage/' . Auth::user()->profile_picture) }}" class="w-10 h-10 rounded-md">
+                    @else
+                        <svg class="text-purple-400" width="40" height="40" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="32" cy="20" r="12" fill="#C4C4C4" />
+                            <path d="M16 52C16 43.1634 23.1634 36 32 36C40.8366 36 48 43.1634 48 52V56H16V52Z"
+                                fill="#C4C4C4" />
+                        </svg>
+                    @endif
+                </button>
 
-            @include('includes.user-dropdown')
+                @include('includes.user-dropdown')
+            </div>
         </div>
-    </div>
 </header>
 
 <script>
