@@ -28,6 +28,10 @@ Route::get('/inventory', function () {
     return view('inventory');
 })->name("inventory");
 
+Route::get('/stall',function(){
+    return view('stall');
+})->name("stall");
+
 // Test routes
 Route::get('/test', function () {
     return view('SQLTest');
@@ -51,7 +55,25 @@ Route::get('/dashboard', function () {
     return view('auth/dashboard');
 })->name('dashboard');
 
-// API Routes (web.php or api.php - choose one)
+// API Routes
 Route::post('/items', [ItemController::class, 'store'])->name('items.store');
 Route::get('/api/steam/inventory', [SteamController::class, 'fetchSteamInventory']);
 Route::get('/api/fetch-data', [MarketController::class, 'fetchData']);
+
+// User Items API Routes
+Route::prefix('api')->group(function () {
+    Route::get('/user/items', [ItemController::class, 'getUserItems']);
+    Route::put('/items/{id}', [ItemController::class, 'update']);
+});
+
+// Market API Routes
+Route::prefix('api/market')->group(function () {
+    Route::get('/', [MarketController::class, 'fetchData']);
+    // Add more market-related API endpoints here if needed
+});
+
+// Steam API Routes
+Route::prefix('api/steam')->group(function () {
+    Route::get('/inventory', [SteamController::class, 'fetchSteamInventory']);
+    // Add more Steam-related API endpoints here if needed
+});

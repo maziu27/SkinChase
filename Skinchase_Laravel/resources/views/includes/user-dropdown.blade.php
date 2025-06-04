@@ -33,7 +33,7 @@
             <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path d="M4 6h16M4 10h16M4 14h16M4 18h16" />
             </svg>
-            <a href="#">My stall</a>
+            <a href="stall">My stall</a>
         </li>
         <li class="flex items-center px-4 py-2 hover:bg-gray-700 cursor-pointer text-cyan-400">
             <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
