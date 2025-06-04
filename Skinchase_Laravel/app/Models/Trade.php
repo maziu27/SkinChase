@@ -11,6 +11,10 @@ class Trade extends Model
         'user_name',
         'item_id',
         'item_name',
+        'price',
+        'image',
+        'status',
+        'payment_method'
     ];
 
     protected $table = 'trades';

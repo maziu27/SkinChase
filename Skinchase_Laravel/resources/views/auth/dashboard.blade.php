@@ -24,7 +24,7 @@
                 <span class="bg-green-500 text-white px-3 py-1 rounded-md font-medium mt-4 md:mt-0">✔ Verified</span>
             </div>
 
-            {{-- Earnings
+            Earnings
             <div class="bg-[#2A2D34] p-4 rounded-lg">
                 <h2 class="text-lg font-semibold mb-2">Earnings</h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
@@ -37,7 +37,7 @@
                         <p class="text-yellow-400 font-bold">n/a €</p>
                     </div>
                 </div>
-            </div>--}}
+            </div>
 
             {{-- Tabs --}}
             {{-- Tabs --}}
@@ -46,13 +46,11 @@
                     class="tab-button pb-2 border-b-2 border-purple-500 text-purple-400 font-semibold">Personal Info</button>
                 <button data-tab="items-for-sale" class="tab-button pb-2">Listed items</button>
                 <button data-tab="transactions" class="tab-button pb-2">Transactions</button>
-                <button data-tab="trades" class="tab-button pb-2">Trades</button>
+               {{-- <button data-tab="trades" class="tab-button pb-2">Trades</button>--}}
             </div>
 
             {{--Personal Info --}}
-            {{-- Contenido de las pestañas --}}
             <div id="personal-info" class="tab-content">
-                {{-- Personal Info --}}
                 <div class="bg-[#2A2D34] p-4 rounded-lg">
                     <h3 class="text-lg font-semibold flex items-center gap-2">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-blue-400" fill="none" viewBox="0 0 24 24"
@@ -128,18 +126,17 @@
                 {{-- Transactions content --}}
                 <div class="bg-[#2A2D34] p-4 rounded-lg">
                     <h3 class="text-lg font-semibold mb-4">Transaction History</h3>
-                        <p class="text-gray-400">No transactions yet.</p>
 
                 </div>
             </div>
-
+            {{--
             <div id="trades" class="tab-content hidden">
-                {{-- Trades content --}}
+                {{-- Trades content 
                 <div class="bg-[#2A2D34] p-4 rounded-lg">
                     <h3 class="text-lg font-semibold mb-4">Trade History</h3>
                     <p class="text-gray-400">No trades yet.</p>
                 </div>
-            </div>
+            </div>--}}
 
             {{-- Botón de logout --}}
             <form method="POST" action="{{ route('logout') }}" class="text-center pt-4">

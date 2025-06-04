@@ -10,30 +10,6 @@ use App\Models\Item;
 
 class makeTrade extends Controller
 {
-    public function comprarItem()
-    {
-        $itemId = Session::get('item_id');
-
-        if (!$itemId) {
-            return redirect('home')->with('error', 'No se encontró el ID del ítem en la sesión.');
-        }
-
-        $item = Item::findOrFail($itemId);
-        $user = Auth::user();
-
-        Trade::create([
-            'user_id' => $user->id,
-            'user_name' => $user->name,
-            'item_id' => $item->id,
-            'item_name' => $item->name,
-        ]);
-
-        // Limpiar el item_id de la sesión
-        Session::forget('item_id');
-
-        return view('checkout-success', compact('item'));
-    }
-
     public function registrarCompra()
     {
         $user = Auth::user();
@@ -48,26 +24,45 @@ class makeTrade extends Controller
             return redirect('home')->with('error', 'No se encontraron productos comprados.');
         }
 
+        $createdTrades = [];
+        
         foreach ($items as $item) {
-            $itemModel = Item::find($item['id'] ?? null);
+            // Buscar el item en la base de datos por asset_id (que es el ID único de Steam)
+            $itemModel = Item::where('asset_id', $item['id'])->first();
 
+            // Si no existe el item, lo creamos en la base de datos
             if (!$itemModel) {
-                // Ignorar este item si no existe en la base de datos
-                continue;
+                $itemModel = Item::create([
+                    'asset_id' => $item['id'],
+                    'name' => $item['name'],
+                    'icon_url' => $item['image'],
+                    'price' => $item['price'],
+                    'float_value' => $item['float_value'] ?? null,
+                ]);
             }
 
-            Trade::create([
+            // Registrar la transacción en trades
+            $trade = Trade::create([
                 'user_id' => $user->id,
                 'user_name' => $user->name,
                 'item_id' => $itemModel->id,
                 'item_name' => $item['name'],
-                'image' => $item['image'],
                 'price' => $item['price'],
+                'image' => $item['image'],
+                'status' => 'completed', // Estado completado para pagos exitosos
+                'payment_method' => 'stripe', // Método de pago
             ]);
+
+            $createdTrades[] = $trade;
         }
 
+        // Limpiar la sesión
         Session::forget('purchased_items');
 
-        return view('checkout-success', ['items' => $items]);
+        // Redirigir a la página de éxito con los trades creados
+        return view('checkout-success', [
+            'trades' => $createdTrades,
+            'items' => $items
+        ]);
     }
 }
