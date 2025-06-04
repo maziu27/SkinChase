@@ -2,6 +2,9 @@
 
 @section('title', 'Market | SkinChase')
 
+@if(!auth()->check())
+    <script>window.location.href = "{{ route('login') }}";</script>
+@else
 @section('content')
     <div class="flex flex-col bg-gray-900 text-white">
         @include('includes.market-buttons')
@@ -12,11 +15,13 @@
             @include('includes.sidebar')
 
             <div id="contenedor-productos" class="flex-1 grid gap-4 xl:grid-cols-6 lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-3 grid-cols-2 overflow-hidden">
+                <!-- Los productos se cargarán aquí mediante JavaScript -->
             </div>
         </div>
         
         @include('includes.basket')
         
+        <!-- Modal de producto -->
         <div id="product-modal" class="fixed inset-0 z-50 bg-black bg-opacity-70 hidden justify-center items-center p-2 sm:p-4"
             onclick="closeModalOnBackdrop(event)">
             <div class="bg-[#1A1D24] rounded-xl p-4 sm:p-8 w-full max-w-5xl max-h-[90vh] overflow-y-auto text-white flex flex-col items-center relative"
@@ -52,6 +57,7 @@
         </div>
     </main>
 
+    @auth
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="{{ asset('js/market.js') }}"></script>
     <script>
@@ -155,7 +161,7 @@
                         data: data,
                         borderColor: 'rgb(34, 197, 94)',
                         backgroundColor: 'rgba(34, 197, 94, 0.1)',
-                        tension: 0.3, // Línea más suave
+                        tension: 0.3,
                         fill: true,
                         pointRadius: 3,
                         pointHoverRadius: 5
@@ -220,4 +226,6 @@
             }
         }
     </script>
+    @endauth
 @endsection
+@endif

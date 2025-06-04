@@ -2,18 +2,21 @@
 
 @section('title', 'Dashboard | SkinChase')
 
+@if(!auth()->check())
+    <script>window.location.href = "{{ route('login') }}";</script>
+@else
 @section('content')
-    <h1 class="text-center my-6 text-3xl font-bold text-purple-500">Welcome back, {{Auth::user()->name}} </h1>
+    <h1 class="text-center my-6 text-3xl font-bold text-purple-500">Welcome back, {{ auth()->user()->name }} </h1>
 
     {{-- Perfil del usuario --}}
     <div class="max-w-5xl mx-auto bg-[#1A1D24] text-white rounded-xl p-6 shadow-lg space-y-6">
         <div class="flex flex-col md:flex-row items-center justify-between">
             <div class="flex items-center space-x-4">
-                @if(Auth::user()->profile_picture)
-                    <img src="{{ asset('storage/' . Auth::user()->profile_picture) }}" class="w-24 h-24 rounded-full">
+                @if(auth()->user()->profile_picture)
+                    <img src="{{ asset('storage/' . auth()->user()->profile_picture) }}" class="w-24 h-24 rounded-full">
                 @endif
                 <div>
-                    <p class="text-xl font-bold"> {{ Auth::user()->name }}</p>
+                    <p class="text-xl font-bold">{{ auth()->user()->name }}</p>
                     <div class="flex items-center gap-2 text-sm mt-1">
                     </div>
                 </div>
@@ -25,12 +28,6 @@
         <div class="bg-[#2A2D34] p-4 rounded-lg">
             <h2 class="text-lg font-semibold mb-2">Earnings</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-                {{--
-                <div>
-                    <p class="text-gray-400">Sales</p>
-                    <p class="text-green-400 font-bold">2,570.27 €</p>
-                </div>
-                --}}
                 <div>
                     <p class="text-gray-400">Purchases</p>
                     <p class="text-green-400 font-bold">n/a €</p>
@@ -42,8 +39,7 @@
             </div>
         </div>
 
-        
-        {{-- Tabs (no funcionales por ahora) --}}
+        {{-- Tabs --}}
         <div class="flex space-x-4 border-b border-gray-600 text-sm text-gray-300 pt-4">
             <button class="pb-2 border-b-2 border-purple-500 text-purple-400 font-semibold">Personal Info</button>
             <button class="pb-2">Items for sale</button>
@@ -69,7 +65,7 @@
 
                 <div>
                     <label class="block text-sm text-gray-300 mb-1" for="email">Email address</label>
-                    <input type="email" name="email" id="email" value="{{ old('email', Auth::user()->email) }}"
+                    <input type="email" name="email" id="email" value="{{ old('email', auth()->user()->email) }}"
                         class="w-full bg-gray-800 text-white border border-gray-600 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500">
                 </div>
 
@@ -87,9 +83,8 @@
 
                 <div>
                     <label class="block text-sm text-gray-300 mb-1" for="trade_link">Steam Trade Link</label>
-                    <input type="url" name="trade_link" id="trade_link" value="{{ old('trade_link', Auth::user()->trade_link) }}" 
+                    <input type="url" name="trade_link" id="trade_link" value="{{ old('trade_link', auth()->user()->trade_link) }}" 
                     class="w-full bg-gray-800 text-white border border-gray-600 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500">
-                    
                 </div>
 
                 <div>
@@ -118,7 +113,6 @@
                 Delete account
             </button>
         </form>
-
-        
     </div>
 @endsection
+@endif

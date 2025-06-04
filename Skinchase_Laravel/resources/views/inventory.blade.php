@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
 @section('title', 'Inventory | SkinChase')
-
+@if(!auth()->check())
+    <script>window.location.href = "{{ route('login') }}";</script>
+@else
 @section('content')
 
 @include('includes.scripts')
@@ -15,6 +17,7 @@
     </div>
 </div>
 @endsection
+@endif
 <script src="{{"js/inventory.js"}}">
 
 </script>

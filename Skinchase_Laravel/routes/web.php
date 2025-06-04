@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\ItemController;
-use App\Http\Controllers\BasketController;
 use App\Http\Controllers\MarketController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StripeLinkController;
@@ -69,11 +68,9 @@ Route::prefix('api')->group(function () {
 // Market API Routes
 Route::prefix('api/market')->group(function () {
     Route::get('/', [MarketController::class, 'fetchData']);
-    // Add more market-related API endpoints here if needed
 });
 
 // Steam API Routes
 Route::prefix('api/steam')->group(function () {
     Route::get('/inventory', [SteamController::class, 'fetchSteamInventory']);
-    // Add more Steam-related API endpoints here if needed
 });

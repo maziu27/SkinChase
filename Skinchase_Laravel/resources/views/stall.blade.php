@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
 @section('title', 'Stall | SkinChase')
-
+@if(!auth()->check())
+    <script>window.location.href = "{{ route('login') }}";</script>
+@else
 @section('content')
     <h1 class="text-center p-3 text-purple-400 text-4xl md:text-6xl font-bold mb-6 leading-tight">{{Auth::user()->name}}'s Stall</h1>
 
@@ -137,3 +139,4 @@
         });
     </script>
 @endsection
+@endif
