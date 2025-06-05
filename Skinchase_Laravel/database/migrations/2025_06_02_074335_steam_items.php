@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // crea la tabla steam_items
         Schema::create('steam_items', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id')->nullable();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null'); //clave foranea a la tabla user
             $table->string('asset_id');
             $table->string('market_hash_name');
             $table->string('icon_url');

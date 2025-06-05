@@ -31,7 +31,7 @@ Route::get('/stall',function(){
     return view('stall');
 })->name("stall");
 
-// Test routes
+// Ruta de prueba que utilicé para mostrar los productos desde mySQL
 Route::get('/test', function () {
     return view('SQLTest');
 })->name("test");

@@ -2,8 +2,6 @@
 
 /*
 Controlador para autenticación de usuarios, incluyendo registro, inicio de sesión
-
-
 */
 
 namespace App\Http\Controllers;
@@ -80,7 +78,7 @@ class AuthController extends Controller
         $request->validate([
             'email' => 'required|email|unique:users,email,' . $user->id,
             'password' => 'nullable|min:6|confirmed',
-            'profile_picture' => 'nullable|image|max:2048', // Validación para imagen (2MB máx.)
+            'profile_picture' => 'nullable|image|max:2048', // Validación para imagen.
         ]);
 
         $user->email = $request->email;

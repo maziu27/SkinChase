@@ -22,7 +22,7 @@ class UserFactory extends Factory
      * @return array<string, mixed>
      */
     public function definition(): array
-    {
+    { //no he utilizado factories ni seeders
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),

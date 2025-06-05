@@ -9,10 +9,10 @@
         @include('includes.header')
     </header>
     
-    <!-- Web content -->
+    <!-- Contenido -->
     
     @yield('content')
-    </>
+    
      <!-- Footer -->
     <footer class="">
         @include('includes.footer')

@@ -16,11 +16,16 @@ class StripeLinkController extends Controller
 
         // Obtener los datos de múltiples productos desde la solicitud
         $items = $request->input('items', []);
+
+        // si el array está vacio DEP
         if (empty($items)) {
-            return response()->json(['error' => 'No se recibieron productos para procesar.'], 400);
+            return response()->json(['error' => 'No products received for processing.'], 400);
         }
+
+        // los items se guardan en el array este
         $lineItems = [];
 
+        //itera todos los productos enviados
         foreach ($items as $item) {
             $lineItems[] = [
                 'price_data' => [
@@ -45,11 +50,13 @@ class StripeLinkController extends Controller
                 'cancel_url' => url('/market'),
             ]);
 
+            // guarda los items en la sesión
             LaravelSession::put('purchased_items', $items);
 
             return response()->json(['url' => $checkoutSession->url]);
 
         } catch (\Exception $e) {
+            //retorna exepción con código de error
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }

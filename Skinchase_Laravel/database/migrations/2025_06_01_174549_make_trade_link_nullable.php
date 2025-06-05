@@ -11,6 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // permite que el trade_link sea null
         Schema::table('users', function (Blueprint $table) {
             $table->string('trade_link')->nullable()->change();
         });

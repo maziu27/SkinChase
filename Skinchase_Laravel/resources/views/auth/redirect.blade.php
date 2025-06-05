@@ -3,7 +3,7 @@
 @section('title', 'Redirecting | SkinChase')
 
 <head>
-    <meta http-equiv="refresh" content="0; URL={{ Auth::check() ? route('dashboard') : route('login') }}">
+    <meta http-equiv="refresh" content="0; URL={{ Auth::check() ? route('dashboard') : route('login') }}"> {{-- Redirige inmediatamente dependiendo si el usuario está autenticado --}}
     <title>Redirecting...</title>
 </head>
 @section('content')

@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class mySQLController extends Controller
 {
-    //para vista de prueba que saca las mierdas de la base de datos 
+    //para sacar todos los items de la base de datos
     public function index()
     {
         $items = Item::all();
@@ -34,9 +34,8 @@ class mySQLController extends Controller
         if ($request->filled('priceTo')) {
             $query->where('price', '<=', $request->priceTo);
         }
-
         
-        // Ordenamiento
+        // Ordenamiento con consultas mySQL
         switch ($request->input('sort_by')) {
             case 'lowest_price':
                 $query->orderBy('price', 'asc');

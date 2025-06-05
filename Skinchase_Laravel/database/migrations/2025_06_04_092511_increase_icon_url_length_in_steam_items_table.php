@@ -11,6 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+        //aumenta el tamaño permitido de URL de la foto de los steam_items ya que algunos daban error SQL por exceso de tamaño
         Schema::table('steam_items', function (Blueprint $table) {
             Schema::table('steam_items', function (Blueprint $table) {
                 // Cambiar la longitud de icon_url a 700 caracteres

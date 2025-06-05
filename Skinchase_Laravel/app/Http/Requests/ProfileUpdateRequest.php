@@ -16,6 +16,7 @@ class ProfileUpdateRequest extends FormRequest
     public function rules(): array
 {
     return [
+        //validaciones para actualizar la info del usuario
         'email' => ['required', 'email', 'max:255'],
         'password' => ['nullable', 'confirmed', 'min:8'],
         'trade_link' => ['nullable', 'url', 'max:255'],

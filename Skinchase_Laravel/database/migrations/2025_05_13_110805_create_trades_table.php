@@ -13,8 +13,6 @@ return new class extends Migration
     {
         Schema::create('trades', function (Blueprint $table) {
             $table->id();
-
-            // $table->string('trade_id')->unique(); // Removed as per new requirements
             
             //relacionarlo con la tabla users
             $table->foreignId('user_id')->constrained()->onDelete('cascade');

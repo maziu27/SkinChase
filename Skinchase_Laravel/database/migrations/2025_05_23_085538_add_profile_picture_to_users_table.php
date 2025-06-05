@@ -8,6 +8,7 @@ return new class extends Migration
 {
     public function up(): void
     {
+        // añade foto de perfil a la tabla users
         Schema::table('users', function (Blueprint $table) {
             $table->string('profile_picture')->nullable()->after('trade_link');
         });

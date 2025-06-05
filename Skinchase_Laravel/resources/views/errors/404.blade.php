@@ -5,6 +5,8 @@
 
     <!-- easter egg??? wow!!! -->
     <div class="absolute inset-0 z-0 pointer-events-none opacity-70">
+        <!--bucle que coge fotos de la carpeta public/images/skin y los
+        esparce de manera random -->
         @for ($i = 0; $i < 50; $i++)
             <img src="{{ asset('images/skins/skin' . ($i % 6 + 1) . '.png') }}"
                  class="absolute w"
@@ -20,7 +22,7 @@
     </div>
 
     <div class="text-center z-10">
-        <h1 class="text-3xl font-bold mb-6">This is not available at the moment gang... </h1>
+        <h1 class="text-2xl font-bold mb-6">This is not available at the moment gang get yo money up not yo funny up brokie ahh </h1>
         <a href="{{ route('home') }}"
            class="inline-block bg-violet-600 hover:bg-violet-700 text-white font-semibold py-2 px-4 rounded transition">
             Go back!

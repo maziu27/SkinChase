@@ -12,9 +12,7 @@ use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
-    /**
-     * Display the user's profile form.
-     */
+    //para el formulario de edición
     public function edit(Request $request): View
     {
         return view('profile.edit', [
@@ -22,9 +20,7 @@ class ProfileController extends Controller
         ]);
     }
 
-    /**
-     * Update the user's profile information.
-     */
+    // actualiza la información del usuario
     public function update(ProfileUpdateRequest $request): RedirectResponse{
         $user = $request->user();
 
@@ -35,7 +31,6 @@ class ProfileController extends Controller
             $user->email_verified_at = null;
         }
 
-        
         // Actualizar datos básicos
         $user->fill($validated);
 
@@ -49,24 +44,23 @@ class ProfileController extends Controller
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
-    /**
-     * Delete the user's account.
-     */
+    //borra la cuenta del usuario
     public function destroy(Request $request): RedirectResponse
     {
+        //valida la contraseña para borrar la cuenta
         $request->validateWithBag('userDeletion', [
             'password' => ['required', 'current_password'],
         ]);
 
-        $user = $request->user();
+        $user = $request->user(); //obtiene el usuario autenticado
 
-        Auth::logout();
+        Auth::logout(); //cierra sesión
 
-        $user->delete();
+        $user->delete(); //elimina el usuario de la base de datos
 
         $request->session()->invalidate();
-        $request->session()->regenerateToken();
+        $request->session()->regenerateToken(); //regenera el token CSRF
 
-        return Redirect::to('/');
+        return Redirect::to('/'); //redirecciona a la página de inicio
     }
 }

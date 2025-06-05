@@ -9,6 +9,7 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+    // fillable, se puede asignar y actualizar en masa
     protected $fillable = [
         'name',
         'email',
@@ -17,6 +18,7 @@ class User extends Authenticatable
         'profile_picture',
     ];
 
+    // oculta la contraseña y el token
     protected $hidden = [
         'password',
         'remember_token',

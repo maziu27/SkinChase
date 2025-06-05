@@ -7,6 +7,7 @@ use App\Models\User;
 
 class SteamItem extends Model
 {
+    // fillable, se puede asignar y actualizar en masa
     protected $fillable = [
         'asset_id',
         'market_hash_name',
@@ -18,12 +19,15 @@ class SteamItem extends Model
         'user_id',
     ];
 
+    // Para almacenar las etiquetas como un array
     protected $casts = [
-        'tags' => 'array', // Para almacenar las etiquetas como un array
+        'tags' => 'array', 
     ];
 
+    // apunta a la tabla steam_items
     protected $table = 'steam_items';
 
+    // relación muchos SteamItems pertenecen a un usuario
     public function user()
     {
         return $this->belongsTo(User::class);

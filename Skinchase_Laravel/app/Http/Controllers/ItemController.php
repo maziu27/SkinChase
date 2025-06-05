@@ -8,19 +8,19 @@ use Illuminate\Support\Facades\Auth;
 
 class ItemController extends Controller
 {
-    //para venta y almacenar en la tabla steam_items
-
+    //para almacenar skins en la tabla steam_items despues de una venta
     public function store(Request $request){
-    $validated = $request->validate([
-        'asset_id' => 'required|string',
-        'market_hash_name' => 'required|string',
-        'icon_url' => 'required|string',
-        'type' => 'nullable|string',
-        'tradable' => 'required|boolean',
-        'price' => 'required|numeric|min:0.01',
-        'tags' => 'nullable|array',
+        $validated = $request->validate([
+            //validacion 
+            'asset_id' => 'required|string',
+            'market_hash_name' => 'required|string',
+            'icon_url' => 'required|string',
+            'type' => 'nullable|string',
+            'tradable' => 'required|boolean',
+            'price' => 'required|numeric|min:0.01',
+            'tags' => 'nullable|array',
     ]);
-
+    // asigna el id del user autenticado
     $validated['user_id'] = Auth::id();
 
     SteamItem::create($validated);
@@ -28,8 +28,7 @@ class ItemController extends Controller
     return response()->json(['message' => 'Item listed for sale successfully!'], 201);
     }
 
-    // In your ItemController or a new controller
-    // In ItemController.php
+
 public function getUserItems(Request $request)
 {
     $userId = $request->query('user_id');
@@ -39,7 +38,7 @@ public function getUserItems(Request $request)
     }
 
     $items = SteamItem::where('user_id', $userId)
-             ->whereNotNull('price') // Only include items with prices
+             ->whereNotNull('price') // solo incluye objetos con precio
              ->get()
              ->map(function ($item) {
                  return [
@@ -49,7 +48,6 @@ public function getUserItems(Request $request)
                      'icon_url' => $item->icon_url,
                      'price' => (float)$item->price, 
                      'tradable' => $item->tradable,
-                     // include other fields you need
                  ];
              });
 

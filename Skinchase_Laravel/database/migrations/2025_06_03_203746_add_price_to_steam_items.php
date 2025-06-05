@@ -11,6 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+        //añade precio a la tabla steam_items
         Schema::table('steam_items', function (Blueprint $table) {
             $table->decimal('price', 10, 2)->nullable()->after('tradable');
 

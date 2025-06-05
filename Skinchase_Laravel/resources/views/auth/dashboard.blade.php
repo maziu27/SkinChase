@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Dashboard | SkinChase')
-
+<!-- si el usuario no está iniciado sesión redirecciona al login -->
 @if(!auth()->check())
     <script>window.location.href = "{{ route('login') }}";</script>
 @else
@@ -118,7 +118,6 @@
                     <h3 class="text-lg font-semibold mb-4">Your Items for Sale</h3>
                     <div id="inventory-container"
                         class="grid gap-4 xl:grid-cols-6 lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-3 grid-cols-2"></div>
-                    <!-- Aquí puedes listar los items del usuario -->
                 </div>
             </div>
 
@@ -151,17 +150,19 @@
     @endsection
 @endif
 
+<!-- funcionalidad de cambiar de pestaña en el contenedor -->
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const tabButtons = document.querySelectorAll('.tab-button');
         const tabContents = document.querySelectorAll('.tab-content');
 
+        //mete eventos a los botones de pestañas.
         tabButtons.forEach(button => {
             button.addEventListener('click', () => {
                 // Obtener el ID del contenido a mostrar
                 const tabId = button.getAttribute('data-tab');
 
-                // Remover clases activas de todos los botones
+                // quitar clases activas de todos los botones
                 tabButtons.forEach(btn => {
                     btn.classList.remove('border-b-2', 'border-purple-500', 'text-purple-400', 'font-semibold');
                     btn.classList.add('text-gray-300');
@@ -270,7 +271,7 @@
     document.addEventListener("DOMContentLoaded", function () {
         console.log("User's stall loaded correctly");
 
-        // Create the modal dynamically
+        // Crea modal dinámicamente
         const modalHTML = `
                         <div id="priceModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
                             <div class="bg-gray-800 rounded-lg p-6 w-full max-w-md">

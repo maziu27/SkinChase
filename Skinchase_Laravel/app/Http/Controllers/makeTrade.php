@@ -30,7 +30,7 @@ class makeTrade extends Controller
             // Buscar el item en la base de datos por asset_id (que es el ID único de Steam)
             $itemModel = Item::where('asset_id', $item['id'])->first();
 
-            // Si no existe el item, lo creamos en la base de datos
+            // Si no existe el item, se crea en la base de datos
             if (!$itemModel) {
                 $itemModel = Item::create([
                     'asset_id' => $item['id'],
@@ -41,7 +41,7 @@ class makeTrade extends Controller
                 ]);
             }
 
-            // Registrar la transacción en trades
+            // Registrar la transacción en la tabla  trades
             $trade = Trade::create([
                 'user_id' => $user->id,
                 'user_name' => $user->name,
@@ -59,7 +59,8 @@ class makeTrade extends Controller
         // Limpiar la sesión
         Session::forget('purchased_items');
 
-        // Redirigir a la página de éxito con los trades creados
+        // Redirigir a la checkout-success con los items comprados para 
+        // hacer el recibo
         return view('checkout-success', [
             'trades' => $createdTrades,
             'items' => $items

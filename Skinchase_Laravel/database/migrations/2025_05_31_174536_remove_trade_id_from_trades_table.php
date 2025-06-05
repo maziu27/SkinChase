@@ -8,6 +8,7 @@ class RemoveTradeIdFromTradesTable extends Migration
 {
     public function up()
     {
+        // quita la columna trade_id de trades
         Schema::table('trades', function (Blueprint $table) {
             if (Schema::hasColumn('trades', 'trade_id')) {
                 $table->dropColumn('trade_id');
