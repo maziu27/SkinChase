@@ -63,6 +63,8 @@ Route::get('/api/fetch-data', [MarketController::class, 'fetchData']);
 Route::prefix('api')->group(function () {
     Route::get('/user/items', [ItemController::class, 'getUserItems']);
     Route::put('/items/{id}', [ItemController::class, 'update']);
+    Route::get('/user/transactions', [makeTrade::class, 'getUserTransactions']);
+
 });
 
 // Market API Routes

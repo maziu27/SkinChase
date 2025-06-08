@@ -25,7 +25,7 @@ class makeTrade extends Controller
         }
 
         $createdTrades = [];
-        
+
         foreach ($items as $item) {
             // Buscar el item en la base de datos por asset_id (que es el ID único de Steam)
             $itemModel = Item::where('asset_id', $item['id'])->first();
@@ -65,5 +65,21 @@ class makeTrade extends Controller
             'trades' => $createdTrades,
             'items' => $items
         ]);
+    }
+    public function getUserTransactions()
+    {
+        $user = Auth::user();
+
+        if (!$user) {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
+
+        //consulta a la tabla de trades
+        $transactions = Trade::where('user_id', $user->id)
+            ->with('item')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return response()->json($transactions);
     }
 }

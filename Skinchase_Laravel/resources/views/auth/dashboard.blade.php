@@ -18,35 +18,19 @@
                     <div>
                         <p class="text-xl font-bold">{{ auth()->user()->name }}</p>
                         <div class="flex items-center gap-2 text-sm mt-1">
+                            <span class="text-gray-400">Member since {{ auth()->user()->created_at->format('M Y') }}</span>
                         </div>
                     </div>
                 </div>
-                <span class="bg-green-500 text-white px-3 py-1 rounded-md font-medium mt-4 md:mt-0">✔ Verified</span>
+                <span class="bg-green-500 text-white px-3 py-1 rounded-md font-medium mt-4 md:mt-0">Verified</span>
             </div>
 
-            Earnings
-            <div class="bg-[#2A2D34] p-4 rounded-lg">
-                <h2 class="text-lg font-semibold mb-2">Earnings</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-                    <div>
-                        <p class="text-gray-400">Purchases</p>
-                        <p class="text-green-400 font-bold">n/a €</p>
-                    </div>
-                    <div>
-                        <p class="text-gray-400">Net</p>
-                        <p class="text-yellow-400 font-bold">n/a €</p>
-                    </div>
-                </div>
-            </div>
-
-            {{-- Tabs --}}
             {{-- Tabs --}}
             <div class="flex space-x-4 border-b border-gray-600 text-sm text-gray-300 pt-4">
                 <button data-tab="personal-info"
                     class="tab-button pb-2 border-b-2 border-purple-500 text-purple-400 font-semibold">Personal Info</button>
                 <button data-tab="items-for-sale" class="tab-button pb-2">Listed items</button>
                 <button data-tab="transactions" class="tab-button pb-2">Transactions</button>
-               {{-- <button data-tab="trades" class="tab-button pb-2">Trades</button>--}}
             </div>
 
             {{--Personal Info --}}
@@ -102,40 +86,34 @@
                             Update Info
                         </button>
                     </form>
-                    <form method="POST" action="{{ route('logout') }}" class="text-center pt-4">
-                        @csrf
-                        <button type="submit"
-                            class="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-6 rounded transition">
-                            Delete account
-                        </button>
-                    </form>
                 </div>
             </div>
 
             <div id="items-for-sale" class="tab-content hidden">
                 {{-- Items for sale content --}}
                 <div class="bg-[#2A2D34] p-4 rounded-lg">
-                    <h3 class="text-lg font-semibold mb-4">Your Items for Sale</h3>
+                    <h3 class="text-lg font-semibold mb-4">Items for Sale. Check out your stall <a class="text-blue-500"
+                            href="{{route('stall')}}">here.</a></h3>
                     <div id="inventory-container"
                         class="grid gap-4 xl:grid-cols-6 lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-3 grid-cols-2"></div>
                 </div>
             </div>
 
             <div id="transactions" class="tab-content hidden">
-                {{-- Transactions content --}}
+                {{-- Transacciones --}}
                 <div class="bg-[#2A2D34] p-4 rounded-lg">
                     <h3 class="text-lg font-semibold mb-4">Transaction History</h3>
-
+                    <div id="transactions-container" class="space-y-4">
+                        <!-- Las transacciones se cargarán aqui -->
+                        <div class="text-center py-8">
+                            <div
+                                class="animate-spin inline-block w-8 h-8 border-4 border-purple-500 border-t-transparent rounded-full">
+                            </div>
+                            <p class="mt-4 text-gray-400">Loading transactions...</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-            {{--
-            <div id="trades" class="tab-content hidden">
-                {{-- Trades content 
-                <div class="bg-[#2A2D34] p-4 rounded-lg">
-                    <h3 class="text-lg font-semibold mb-4">Trade History</h3>
-                    <p class="text-gray-400">No trades yet.</p>
-                </div>
-            </div>--}}
 
             {{-- Botón de logout --}}
             <form method="POST" action="{{ route('logout') }}" class="text-center pt-4">
@@ -144,8 +122,6 @@
                     Log out
                 </button>
             </form>
-
-
         </div>
     @endsection
 @endif
@@ -179,13 +155,16 @@
 
                 // Mostrar el contenido correspondiente
                 document.getElementById(tabId).classList.remove('hidden');
+
+                // Load transactions if that tab is selected
+                if (tabId === 'transactions') {
+                    fetchUserTransactions();
+                }
             });
         });
     });
-</script>
 
-<!--skins en venta -->
-<script>
+    // skins en venta
     const userId = {{ Auth::id() }};
 
     // Define renderItems function before it's used
@@ -194,49 +173,102 @@
 
         if (!items || items.length === 0) {
             inventoryContainer.innerHTML = `
-                    <p class='text-gray-400 col-span-full text-center py-10'>
-                        You don't have any items listed in your stall yet. Sell your items <a class="text-blue-500" href="{{route('inventory')}}">here</a>
-                    </p>
-                `;
+                <p class='text-gray-400 col-span-full text-center py-10'>
+                    You don't have any items listed in your stall yet. Sell your items <a class="text-blue-500" href="{{route('inventory')}}">here</a>
+                </p>
+            `;
             return;
         }
 
         inventoryContainer.innerHTML = items.map(item => `
-    <div class="item-card bg-gray-800 rounded-lg overflow-hidden shadow-lg transition-transform hover:scale-105">
-        <img src="${item.icon_url || '/images/default-item.png'}" alt="${item.market_hash_name}" 
-             class="w-full h-32 object-contain bg-gray-900 p-2">
-        <div class="p-3">
-            <h3 class="text-white font-semibold break-words">${item.market_hash_name}</h3>
-            <p class="text-orange-400 font-bold">€${(item.price || 0).toFixed(2)}</p>
+        <div class="item-card bg-gray-800 rounded-lg overflow-hidden shadow-lg transition-transform hover:scale-105">
+            <img src="${item.icon_url || '/images/default-item.png'}" alt="${item.market_hash_name}" 
+                 class="w-full h-32 object-contain bg-gray-900 p-2">
+            <div class="p-3">
+                <h3 class="text-white font-semibold break-words">${item.market_hash_name}</h3>
+                <p class="text-orange-400 font-bold">€${(item.price || 0).toFixed(2)}</p>
+            </div>
         </div>
-    </div>
-`).join('');
-
+    `).join('');
     }
 
-    function updateItemPrice(itemId, newPrice) {
-        fetch(`/api/items/${itemId}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-            },
-            body: JSON.stringify({ price: newPrice })
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert('Price updated successfully!');
-                    document.getElementById('priceModal').classList.add('hidden');
-                    fetchUserItems(); // Refresh the list
-                } else {
-                    alert('Error updating price: ' + (data.message || 'Unknown error'));
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Error updating price');
+    // Funcion para pillar las transacciones del usuario
+    async function fetchUserTransactions() {
+        const container = document.getElementById('transactions-container');
+
+        try {
+            const response = await fetch(`/api/user/transactions`, {
+                headers: {
+                    'Accept': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                credentials: 'include'
             });
+
+            if (!response.ok) {
+                throw new Error('Failed to fetch transactions');
+            }
+
+            const transactions = await response.json();
+
+            if (transactions.length === 0) {
+                container.innerHTML = `
+                <div class="text-center py-8">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <h3 class="mt-4 text-lg font-medium text-gray-300">No transactions yet</h3>
+                    <p class="mt-1 text-gray-500">Your transaction history will appear here</p>
+                </div>
+            `;
+                return;
+            }
+
+            container.innerHTML = transactions.map(transaction => `
+            <div class="bg-gray-700 rounded-lg p-4">
+                <div class="flex justify-between items-start">
+                    <div class="flex items-center space-x-3">
+                        <div class="bg-gray-600 p-2 rounded-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 ${transaction.status === 'completed' ? 'text-green-400' : 'text-yellow-400'}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                ${transaction.status === 'completed' ?
+                                '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />' :
+                                '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />'}
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-white">${transaction.status === 'completed' ? 'Completed' : 'Pending'}</h4>
+                            <p class="text-sm text-gray-400">${new Date(transaction.created_at).toLocaleString()}</p>
+                        </div>
+                    </div>
+                    <span class="text-lg font-bold ${transaction.status === 'completed' ? 'text-green-400' : 'text-yellow-400'}">
+                        €${parseFloat(transaction.price).toFixed(2)}
+                    </span>
+                </div>
+                <div class="mt-3 pt-3 border-t border-gray-600">
+                    <div class="flex items-center space-x-2 bg-gray-800 p-2 rounded">
+                        
+                        <div class="truncate">
+                            <p class="text-xs text-white truncate">${transaction.item_name}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-3 pt-3 border-t border-gray-600">
+                    <p class="text-sm text-gray-400">Transaction ID: ${transaction.id}</p>
+                </div>
+            </div>
+        `).join('');
+
+        } catch (error) {
+            console.error('Error fetching transactions:', error);
+            container.innerHTML = `
+            <div class="text-center py-8 text-red-400">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+                <p class="mt-4">Failed to load transactions. Please try again later.</p>
+            </div>
+        `;
+        }
     }
 
     async function fetchUserItems() {
@@ -253,7 +285,7 @@
             });
 
             if (!response.ok) {
-                throw new Error('Network response was not ok');
+                throw new Error('Bad network response');
             }
 
             const items = await response.json();
@@ -261,46 +293,16 @@
         } catch (error) {
             console.error("Error:", error);
             inventoryContainer.innerHTML = `
-                            <p class='text-red-500 col-span-full text-center py-10'>
-                                Error loading items: ${error.message}
-                            </p>
-                        `;
+            <p class='text-red-500 col-span-full text-center py-10'>
+                Error loading items: ${error.message}
+            </p>
+        `;
         }
     }
 
     document.addEventListener("DOMContentLoaded", function () {
-        console.log("User's stall loaded correctly");
-
-        // Crea modal dinámicamente
-        const modalHTML = `
-                        <div id="priceModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
-                            <div class="bg-gray-800 rounded-lg p-6 w-full max-w-md">
-                                <h3 class="text-xl font-bold text-white mb-4">Update Price</h3>
-                                <p id="itemName" class="text-orange-500 mb-2"></p>
-                                <div class="mb-4">
-                                    <label for="priceInput" class="block text-sm text-gray-300 mb-2">Price (€)</label>
-                                    <input type="number" step="0.01" id="priceInput" 
-                                           class="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white">
-                                </div>
-                                <div class="flex gap-2">
-                                    <button id="cancelSell" class="flex-1 bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-md">
-                                        Cancel
-                                    </button>
-                                    <button id="confirmSell" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md">
-                                        Update
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-        document.body.insertAdjacentHTML('beforeend', modalHTML);
-
-        // Set up cancel button
-        document.getElementById('cancelSell').addEventListener('click', function () {
-            document.getElementById('priceModal').classList.add('hidden');
-        });
-
-        // Load user items on page load
+        console.log("User's dashboard loaded correctly");
+        // cuando cargue la página se cargan las skins del usuario
         fetchUserItems();
     });
 </script>

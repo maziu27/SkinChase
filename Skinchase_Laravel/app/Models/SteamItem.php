@@ -1,12 +1,10 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 
-class SteamItem extends Model
-{
+class SteamItem extends Model{
     // fillable, se puede asignar y actualizar en masa
     protected $fillable = [
         'asset_id',
